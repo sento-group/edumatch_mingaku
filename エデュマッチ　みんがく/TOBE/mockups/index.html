@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エデュマッチ モックアップ一覧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .header h1 {
+            font-size: 48px;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+        .header p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+        }
+        .category-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .category-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2563eb;
+        }
+        .mockups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .mockup-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .mockup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #2563eb;
+        }
+        .mockup-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+        .mockup-content {
+            padding: 20px;
+        }
+        .mockup-number {
+            font-size: 12px;
+            color: #2563eb;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .mockup-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .mockup-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .stats-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 42px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .footer p {
+            color: #666;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .mockups-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 エデュマッチ モックアップ一覧</h1>
+            <p>
+                「エデュマッチ みんがく」の全ての画面モックアップへのポータルページです。<br>
+                各モックアップをクリックして画面デザインをご確認いただけます。
+            </p>
+        </div>
+
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">21</div>
+                    <div class="stat-label">総画面数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">カテゴリー</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">レスポンシブ対応</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">🏠 一般ユーザー向け画面</h2>
+            <div class="mockups-grid">
+                <a href="01_トップページ.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🏠</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">01</div>
+                        <div class="mockup-title">トップページ</div>
+                        <div class="mockup-description">サービス紹介、おすすめ記事・サービス、新着情報などを掲載するメインページ</div>
+                    </div>
+                </a>
+                <a href="02_記事一覧.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📰</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">02</div>
+                        <div class="mockup-title">記事一覧</div>
+                        <div class="mockup-description">カテゴリ・タグで絞り込み検索可能な記事一覧ページ。検索バーあり</div>
+                    </div>
+                </a>
+                <a href="15_記事詳細（全文）.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📄</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">15</div>
+                        <div class="mockup-title">記事詳細（全文）</div>
+                        <div class="mockup-description">記事全文表示ページ。右下にチャットボット機能あり（対話モード・議論モード）</div>
+                    </div>
+                </a>
+                <a href="03_サービス一覧.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔍</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">03</div>
+                        <div class="mockup-title">サービス一覧</div>
+                        <div class="mockup-description">EdTechサービスをカテゴリ・条件で検索・絞り込みできる一覧ページ</div>
+                    </div>
+                </a>
+                <a href="07_サービス詳細.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📋</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">07</div>
+                        <div class="mockup-title">サービス詳細</div>
+                        <div class="mockup-description">サービス詳細情報、レビュー、料金プラン、関連記事を表示</div>
+                    </div>
+                </a>
+                <a href="18_レビュー一覧.html" class="mockup-card">
+                    <div class="mockup-thumbnail">⭐</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">18</div>
+                        <div class="mockup-title">レビュー一覧</div>
+                        <div class="mockup-description">利用者によるリアルな評価とレビューを閲覧できるページ</div>
+                    </div>
+                </a>
+                <a href="21_レコメンド.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🎯</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">21</div>
+                        <div class="mockup-title">レコメンド</div>
+                        <div class="mockup-description">AI分析によるパーソナライズされたおすすめコンテンツ</div>
+                    </div>
+                </a>
+                <a href="10_セミナー・イベント.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📅</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">10</div>
+                        <div class="mockup-title">セミナー・イベント</div>
+                        <div class="mockup-description">教育関連のセミナー・イベント情報と申し込み</div>
+                    </div>
+                </a>
+                <a href="23_キャンペーン情報.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🎉</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">23</div>
+                        <div class="mockup-title">キャンペーン情報</div>
+                        <div class="mockup-description">限定キャンペーンやお得な情報を紹介するページ</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">👤 会員機能画面</h2>
+            <div class="mockups-grid">
+                <a href="04_会員登録ゲート.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔐</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">04</div>
+                        <div class="mockup-title">会員登録ゲート</div>
+                        <div class="mockup-description">会員限定コンテンツ閲覧前に表示される登録促進ページ</div>
+                    </div>
+                </a>
+                <a href="05_新規登録・ログイン.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✍️</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">05</div>
+                        <div class="mockup-title">新規登録・ログイン</div>
+                        <div class="mockup-description">タブ切り替え式の登録・ログインフォーム。SNS認証対応</div>
+                    </div>
+                </a>
+                <a href="08_マイダッシュボード.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📊</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">08</div>
+                        <div class="mockup-title">マイダッシュボード</div>
+                        <div class="mockup-description">一般会員向けダッシュボード。閲覧履歴、キープリスト、導入検討進捗</div>
+                    </div>
+                </a>
+                <a href="19_キープリスト.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📌</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">19</div>
+                        <div class="mockup-title">キープリスト</div>
+                        <div class="mockup-description">興味のあるサービスを保存して一覧で管理するページ</div>
+                    </div>
+                </a>
+                <a href="09_資料請求・問い合わせ.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📧</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">09</div>
+                        <div class="mockup-title">資料請求・問い合わせ</div>
+                        <div class="mockup-description">サービス企業への資料請求・問い合わせフォーム</div>
+                    </div>
+                </a>
+                <a href="11_お問い合わせ（運営宛）.html" class="mockup-card">
+                    <div class="mockup-thumbnail">💬</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">11</div>
+                        <div class="mockup-title">お問い合わせ（運営宛）</div>
+                        <div class="mockup-description">エデュマッチ運営へのお問い合わせフォーム。チャット・メール対応</div>
+                    </div>
+                </a>
+                <a href="06_プラン選択.html" class="mockup-card">
+                    <div class="mockup-thumbnail">💳</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">06</div>
+                        <div class="mockup-title">プラン選択</div>
+                        <div class="mockup-description">フリープラン・スタンダード・プレミアムの3プランから選択</div>
+                    </div>
+                </a>
+                <a href="13_決済.html" class="mockup-card">
+                    <div class="mockup-thumbnail">💵</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">13</div>
+                        <div class="mockup-title">決済</div>
+                        <div class="mockup-description">決済情報入力・確認フロー。クレジットカード・請求書払い対応</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">🤝 マッチング機能画面</h2>
+            <div class="mockups-grid">
+                <a href="32_人材検索.html" class="mockup-card">
+                    <div class="mockup-thumbnail">👥</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">32</div>
+                        <div class="mockup-title">人材検索</div>
+                        <div class="mockup-description">講師・AIコンサルタント・専門家などの人材を検索するページ</div>
+                    </div>
+                </a>
+                <a href="33_企業側ダッシュボード.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🏢</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">33</div>
+                        <div class="mockup-title">企業側ダッシュボード</div>
+                        <div class="mockup-description">マッチング管理履歴一覧、金額・ステータス管理</div>
+                    </div>
+                </a>
+                <a href="34_ユーザープロファイル登録画面.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📝</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">34</div>
+                        <div class="mockup-title">ユーザープロファイル登録</div>
+                        <div class="mockup-description">無料登録→プラン選択→プロフィール登録→ダッシュボードの一連フロー</div>
+                    </div>
+                </a>
+                <a href="35_ユーザーダッシュボード画面.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📈</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">35</div>
+                        <div class="mockup-title">ユーザーダッシュボード</div>
+                        <div class="mockup-description">記事サマリー、決済プラン、収益管理、記事作成</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">🔗 その他</h2>
+            <div class="mockups-grid">
+                <a href="03_記事詳細（ゲート前）.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔒</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">03alt</div>
+                        <div class="mockup-title">記事詳細（ゲート前）</div>
+                        <div class="mockup-description">会員登録が必要な記事のゲート前表示ページ</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 エデュマッチ. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+
