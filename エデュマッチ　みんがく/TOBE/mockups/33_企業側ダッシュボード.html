@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企業側ダッシュボード - エデュマッチ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+        }
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .notification-btn {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .welcome-section {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        .welcome-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .welcome-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        .stat-change {
+            font-size: 13px;
+            color: #10b981;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .filter-tab {
+            padding: 8px 20px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .filter-tab.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        .matchings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .matchings-table th {
+            text-align: left;
+            padding: 15px;
+            background: #f9fafb;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 2px solid #e5e7eb;
+            font-size: 14px;
+        }
+        .matchings-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .matchings-table tr:hover {
+            background: #f9fafb;
+        }
+        .personnel-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .personnel-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .personnel-details h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        .personnel-role {
+            font-size: 13px;
+            color: #666;
+        }
+        .matching-details {
+            font-size: 14px;
+        }
+        .matching-project {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .matching-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .skill-tag {
+            padding: 3px 10px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .status-matched {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status-rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .status-progress {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .date {
+            font-size: 13px;
+            color: #666;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        .btn-outline {
+            background: white;
+            border: 1px solid #e5e7eb;
+            color: #666;
+        }
+        .btn-outline:hover {
+            background: #f9fafb;
+        }
+        .summary-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .summary-card h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+        .summary-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .matchings-table {
+                font-size: 12px;
+            }
+            .matchings-table th,
+            .matchings-table td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">エデュマッチ</div>
+                <nav class="header-nav">
+                    <a href="#" class="nav-link">ダッシュボード</a>
+                    <a href="#" class="nav-link">人材検索</a>
+                    <a href="#" class="nav-link">設定</a>
+                </nav>
+                <div class="user-menu">
+                    <button class="notification-btn">
+                        🔔
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <span>株式会社エデュテック</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1 class="welcome-title">株式会社エデュテック様</h1>
+            <p class="welcome-subtitle">マッチング管理ダッシュボード</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">総マッチング数</div>
+                <div class="stat-value">47</div>
+                <div class="stat-change">先月比 +12件</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">進行中</div>
+                <div class="stat-value">23</div>
+                <div class="stat-change">検討中・面接予定</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">成約済み</div>
+                <div class="stat-value">15</div>
+                <div class="stat-change">契約成立</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">総額</div>
+                <div class="stat-value">¥2,450K</div>
+                <div class="stat-change">現在の月額合計</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">マッチング管理履歴</h2>
+                </div>
+                <div class="filter-tabs">
+                    <span class="filter-tab active">すべて</span>
+                    <span class="filter-tab">進行中</span>
+                    <span class="filter-tab">成約済み</span>
+                    <span class="filter-tab">保留</span>
+                </div>
+                <table class="matchings-table">
+                    <thead>
+                        <tr>
+                            <th>人材情報</th>
+                            <th>マッチング詳細</th>
+                            <th>ステータス</th>
+                            <th>金額</th>
+                            <th>登録日</th>
+                            <th>アクション</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="personnel-info">
+                                    <div class="personnel-avatar">田</div>
+                                    <div>
+                                        <h4>田中 栄一</h4>
+                                        <p class="personnel-role">AI教育コンサルタント</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matching-details">
+                                    <div class="matching-project">【EdTech導入支援プロジェクト】</div>
+                                    <div>日程: 2024/10/01 - 2025/03/31（6ヶ月）</div>
+                                    <div>形式: オンライン + 対面ハイブリッド</div>
+                                    <div class="matching-skills">
+                                        <span class="skill-tag">GIGAスクール</span>
+                                        <span class="skill-tag">LMS</span>
+                                        <span class="skill-tag">導入支援</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-matched">成約済み</span>
+                            </td>
+                            <td>
+                                <div class="amount">¥180,000</div>
+                                <div class="date">/月</div>
+                            </td>
+                            <td>
+                                <div class="date">2024/08/15</div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary">詳細</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="personnel-info">
+                                    <div class="personnel-avatar">佐</div>
+                                    <div>
+                                        <h4>佐藤 真理子</h4>
+                                        <p class="personnel-role">EdTech カリキュラム開発者</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matching-details">
+                                    <div class="matching-project">【STEAM教育カリキュラム開発】</div>
+                                    <div>日程: 2024/11/01 - 2025/02/28（4ヶ月）</div>
+                                    <div>形式: オンライン</div>
+                                    <div class="matching-skills">
+                                        <span class="skill-tag">STEAM</span>
+                                        <span class="skill-tag">カリキュラム</span>
+                                        <span class="skill-tag">探究学習</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-progress">進行中</span>
+                            </td>
+                            <td>
+                                <div class="amount">¥220,000</div>
+                                <div class="date">/月</div>
+                            </td>
+                            <td>
+                                <div class="date">2024/09/20</div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary">詳細</button>
+                                    <button class="btn btn-outline">連絡</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="personnel-info">
+                                    <div class="personnel-avatar">山</div>
+                                    <div>
+                                        <h4>山本 健太</h4>
+                                        <p class="personnel-role">プログラミング教育専門講師</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matching-details">
+                                    <div class="matching-project">【小学校プログラミング研修】</div>
+                                    <div>日程: 2024/10/15 - 2024/12/31（2ヶ月）</div>
+                                    <div>形式: 対面研修</div>
+                                    <div class="matching-skills">
+                                        <span class="skill-tag">Scratch</span>
+                                        <span class="skill-tag">研修講師</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-pending">検討中</span>
+                            </td>
+                            <td>
+                                <div class="amount">¥95,000</div>
+                                <div class="date">/月</div>
+                            </td>
+                            <td>
+                                <div class="date">2024/09/28</div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary">詳細</button>
+                                    <button class="btn btn-outline">承認</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="personnel-info">
+                                    <div class="personnel-avatar">鈴</div>
+                                    <div>
+                                        <h4>鈴木 直人</h4>
+                                        <p class="personnel-role">データ分析コンサルタント</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matching-details">
+                                    <div class="matching-project">【学習データ可視化システム構築】</div>
+                                    <div>日程: 2024/11/01 - 2025/04/30（6ヶ月）</div>
+                                    <div>形式: オンライン</div>
+                                    <div class="matching-skills">
+                                        <span class="skill-tag">Python</span>
+                                        <span class="skill-tag">データ分析</span>
+                                        <span class="skill-tag">可視化</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-matched">成約済み</span>
+                            </td>
+                            <td>
+                                <div class="amount">¥280,000</div>
+                                <div class="date">/月</div>
+                            </td>
+                            <td>
+                                <div class="date">2024/08/05</div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary">詳細</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="personnel-info">
+                                    <div class="personnel-avatar">木</div>
+                                    <div>
+                                        <h4>木村 由美</h4>
+                                        <p class="personnel-role">オンライン学習コーディネーター</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="matching-details">
+                                    <div class="matching-project">【LMS運用支援】</div>
+                                    <div>日程: 2024/12/01 - 2025/06/30（7ヶ月）</div>
+                                    <div>形式: オンライン</div>
+                                    <div class="matching-skills">
+                                        <span class="skill-tag">Moodle</span>
+                                        <span class="skill-tag">運用支援</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-rejected">不成立</span>
+                            </td>
+                            <td>
+                                <div class="amount">¥150,000</div>
+                                <div class="date">/月</div>
+                            </td>
+                            <td>
+                                <div class="date">2024/09/10</div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-outline">詳細</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
