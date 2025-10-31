@@ -440,6 +440,181 @@
             border-top: 1px solid #34495e;
             color: #bdc3c7;
         }
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        .chatbot-toggle.hidden {
+            display: none;
+        }
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .chatbot-toggle-icon {
+            font-size: 28px;
+            color: white;
+        }
+        .chatbot-panel {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        .chatbot-panel.active {
+            display: flex;
+        }
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            cursor: move;
+        }
+        .chatbot-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .chatbot-header-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .chatbot-title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .chatbot-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .chatbot-close:hover {
+            opacity: 0.8;
+        }
+        .chatbot-mode-selector {
+            display: flex;
+            gap: 10px;
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid white;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .mode-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .mode-btn.active {
+            background: white;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .chatbot-message {
+            display: flex;
+            gap: 10px;
+        }
+        .chatbot-message.user {
+            flex-direction: row-reverse;
+        }
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .chatbot-message.bot .message-bubble {
+            background: #f1f3f5;
+            color: #333;
+        }
+        .chatbot-message.user .message-bubble {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .chatbot-input-area {
+            border-top: 1px solid #eee;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .chatbot-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+        }
+        .chatbot-input:focus {
+            border-color: #667eea;
+        }
+        .chatbot-send {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        .chatbot-send:hover {
+            transform: scale(1.1);
+        }
         @media (max-width: 768px) {
             .article-layout {
                 grid-template-columns: 1fr;
@@ -455,6 +630,16 @@
             }
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .chatbot-panel {
+                width: calc(100vw - 40px);
+                height: 500px;
+                right: 20px;
+                bottom: 100px;
+            }
+            .chatbot-toggle {
+                right: 20px;
+                bottom: 20px;
             }
         }
     </style>
@@ -793,5 +978,230 @@
             </div>
         </div>
     </footer>
+
+    <!-- チャットボット -->
+    <div class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()">
+        <div class="chatbot-toggle-icon">💬</div>
+    </div>
+    
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-top">
+                <div class="chatbot-header-info">
+                    <div class="chatbot-avatar">🤖</div>
+                    <div>
+                        <div class="chatbot-title">エデュマッチAI</div>
+                        <div class="chatbot-subtitle">対話モード</div>
+                    </div>
+                </div>
+                <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+            </div>
+            <div class="chatbot-mode-selector">
+                <button class="mode-btn active" onclick="switchMode('dialogue')">対話モード</button>
+                <button class="mode-btn" onclick="switchMode('debate')">議論モード</button>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="chatbot-message bot">
+                <div class="message-bubble">
+                    こんにちは！エデュマッチAIです📚<br>
+                    この記事「2024年最新版！オンライン学習プラットフォーム徹底比較」について、多様な視点からお答えします。何かご質問はありますか？
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="メッセージを入力..." onkeypress="handleChatInput(event)">
+            <button class="chatbot-send" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'dialogue';
+        let chatHistory = {
+            dialogue: [],
+            debate: []
+        };
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+
+        // ページロード時に初期メッセージを履歴に追加
+        document.addEventListener('DOMContentLoaded', function() {
+            // 対話モードの初期メッセージ
+            chatHistory.dialogue.push({
+                type: 'bot',
+                text: 'こんにちは！エデュマッチAIです📚<br>この記事「2024年最新版！オンライン学習プラットフォーム徹底比較」について、多様な視点からお答えします。何かご質問はありますか？'
+            });
+            // 議論モードの初期メッセージ
+            chatHistory.debate.push({
+                type: 'bot',
+                text: 'こんにちは！エデュマッチAIです🤔<br>この記事「2024年最新版！オンライン学習プラットフォーム徹底比較」について、あなたの意見を深く議論しましょう。あなたはどのプラットフォームに興味がありますか？'
+            });
+            renderMessages();
+        });
+
+        function toggleChatbot() {
+            const panel = document.getElementById('chatbotPanel');
+            const toggle = document.getElementById('chatbotToggle');
+            panel.classList.toggle('active');
+            if (panel.classList.contains('active')) {
+                toggle.classList.add('hidden');
+                document.getElementById('chatbotInput').focus();
+            } else {
+                toggle.classList.remove('hidden');
+            }
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const subtitle = document.querySelector('.chatbot-subtitle');
+            const modeBtns = document.querySelectorAll('.mode-btn');
+            
+            subtitle.textContent = mode === 'dialogue' ? '対話モード' : '議論モード';
+            modeBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 履歴を再描画（メッセージ追加なし）
+            renderMessages();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // ユーザーメッセージを履歴に追加
+            chatHistory[currentMode].push({
+                type: 'user',
+                text: message
+            });
+            input.value = '';
+            renderMessages();
+            
+            // ボットの応答を履歴に追加
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                chatHistory[currentMode].push({
+                    type: 'bot',
+                    text: response
+                });
+                renderMessages();
+            }, 500);
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function renderMessages() {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            messagesContainer.innerHTML = '';
+            
+            chatHistory[currentMode].forEach(msg => {
+                addMessageToDOM(msg.text, msg.type);
+            });
+        }
+
+        function addMessageToDOM(text, type) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chatbot-message ${type}`;
+            messageDiv.innerHTML = `<div class="message-bubble">${text}</div>`;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // 対話モードの応答
+            if (currentMode === 'dialogue') {
+                if (lowerMessage.includes('udemy') || lowerMessage.includes('ユーデミー')) {
+                    return 'Udemyは世界最大級のオンライン学習マーケットプレイスです。210,000以上のコースがあり、日本語コンテンツも充実しています。買い切り型の料金体系で、コースごとに1,200円〜24,000円で購入できます。<br><br>一方で、コースの質にばらつきがある点は注意が必要です。レビューをしっかり確認してから購入することをおすすめします。';
+                } else if (lowerMessage.includes('coursera') || lowerMessage.includes('コーセラ')) {
+                    return 'Courseraは大学レベルの高品質なコースを提供するプラットフォームです。7,000以上のコースがあり、認定証を取得できます。月額3,980円〜、年額39,000円〜の料金体系です。<br><br>ただし、日本語対応が十分でない点と、初心者には難易度が高い点が課題として挙げられます。';
+                } else if (lowerMessage.includes('skillshare') || lowerMessage.includes('スキルシェア')) {
+                    return 'Skillshareはクリエイティブスキルに特化したプラットフォームです。デザインや動画編集などの実践的なプロジェクト形式のコースが豊富です。34,000以上のコースがあります。<br><br>クリエイティブ分野に特化している分、プログラミングやビジネススキルなどの他の分野は弱い傾向があります。';
+                } else if (lowerMessage.includes('価格') || lowerMessage.includes('料金')) {
+                    return '各プラットフォームの料金体系は異なります。<br>• Udemy：買い切り型（1,200円〜24,000円）<br>• Coursera：月額3,980円〜、年額39,000円〜<br>• Skillshare：月額・年額制<br><br>長期的に学習する場合は月額制、特定のスキルだけ学びたい場合は買い切り型がおすすめです。';
+                } else if (lowerMessage.includes('おすすめ') || lowerMessage.includes('選び方')) {
+                    return '目的に応じて最適なプラットフォームが変わります。<br>• 初心者向け → Udemy<br>• 学術的な学習 → Coursera, edX<br>• クリエイティブ系 → Skillshare<br>• ビジネススキル → LinkedIn Learning<br><br>記事の比較表も参考にしてください。';
+                } else if (lowerMessage.includes('おはよう') || lowerMessage.includes('こんにちは') || lowerMessage.includes('こんばんは')) {
+                    return 'こんにちは！記事「2024年最新版！オンライン学習プラットフォーム徹底比較」について、ご質問にお答えします😊';
+                } else if (lowerMessage.includes('ありがとう') || lowerMessage.includes('thanks')) {
+                    return 'どういたしまして！他にもご質問があればいつでもお聞きください✨';
+                } else {
+                    return 'この記事はオンライン学習プラットフォームの比較について解説しています。Udemy、Coursera、Skillshare、LinkedIn Learning、edXなどについて詳しく知りたい場合は、具体的なサービス名をお聞かせください。<br><br>また、料金体系や選び方についてもお答えできます。';
+                }
+            }
+            // 議論モードの応答
+            else {
+                if (lowerMessage.includes('udemy') || lowerMessage.includes('ユーデミー')) {
+                    return 'Udemyについては確かに魅力的なプラットフォームですね。ただし、私としては質のばらつきが気になります。<br><br>あなたはどのような基準でUdemyを評価されますか？';
+                } else if (lowerMessage.includes('coursera') || lowerMessage.includes('コーセラ')) {
+                    return 'Courseraの大学レベルの内容は確かに魅力的ですが、日本語対応の不足という問題があります。<br><br>この点をどう評価されますか？言語の問題は学習効果にどの程度影響すると思いますか？';
+                } else if (lowerMessage.includes('価格') || lowerMessage.includes('料金')) {
+                    return '価格の比較は興味深いですね。<br><br>買い切り型と月額制、どちらが長期的に見てお得だと思いますか？また、無料で始められるedXのような選択肢はどのように評価しますか？';
+                } else if (lowerMessage.includes('おすすめ') || lowerMessage.includes('選び方')) {
+                    return '選び方については、人それぞれ価値観が異なりますね。<br><br>あなたなら、何を最優先にしますか？料金、コンテンツの質、それとも認定証の有無でしょうか？';
+                } else if (lowerMessage.includes('いい') || lowerMessage.includes('良い') || lowerMessage.includes('優秀')) {
+                    return 'それは興味深い見解ですね。具体的にどの点が優秀だと思われますか？<br><br>逆に課題や改善点はどのように考えますか？';
+                } else if (lowerMessage.includes('悪い') || lowerMessage.includes('問題') || lowerMessage.includes('課題')) {
+                    return '問題点の指摘は重要ですね。<br><br>その問題はどの程度深刻だと思いますか？また、代替案としてどのような選択肢がありますか？';
+                } else {
+                    return '面白い意見ですね。もう少し詳しく聞かせていただけますか？<br><br>その意見の根拠や、あなたなりの価値観を教えてください。';
+                }
+            }
+        }
+
+        // ドラッグ機能
+        const chatbotPanel = document.getElementById('chatbotPanel');
+        const chatbotHeader = document.querySelector('.chatbot-header');
+
+        chatbotHeader.addEventListener('mousedown', function(e) {
+            if (e.target.classList.contains('chatbot-close') || e.target.classList.contains('mode-btn')) {
+                return;
+            }
+            isDragging = true;
+            const rect = chatbotPanel.getBoundingClientRect();
+            dragOffset.x = e.clientX - rect.left;
+            dragOffset.y = e.clientY - rect.top;
+            chatbotPanel.style.transition = 'none';
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            
+            let left = e.clientX - dragOffset.x;
+            let top = e.clientY - dragOffset.y;
+            
+            // 画面外に出ないように制限
+            const maxLeft = window.innerWidth - chatbotPanel.offsetWidth;
+            const maxTop = window.innerHeight - chatbotPanel.offsetHeight;
+            
+            left = Math.max(0, Math.min(left, maxLeft));
+            top = Math.max(0, Math.min(top, maxTop));
+            
+            chatbotPanel.style.left = left + 'px';
+            chatbotPanel.style.top = top + 'px';
+            chatbotPanel.style.right = 'auto';
+            chatbotPanel.style.bottom = 'auto';
+        });
+
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                chatbotPanel.style.transition = '';
+            }
+        });
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
 </body>
 </html>

@@ -45,10 +45,52 @@
             color: #2563eb;
             text-decoration: none;
         }
+        .title-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
         .page-title {
             font-size: 32px;
-            margin-bottom: 30px;
             color: #333;
+            margin: 0;
+        }
+        .page-search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px;
+            flex: 1;
+        }
+        .page-search-input {
+            flex: 1;
+            padding: 10px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .page-search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .page-search-btn {
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .page-search-btn:hover {
+            background: #1d4ed8;
         }
         .content-wrapper {
             display: flex;
@@ -254,7 +296,13 @@
             <a href="#">ホーム</a> &gt; 記事・特集
         </div>
 
-        <h1 class="page-title">記事・特集</h1>
+        <div class="title-section">
+            <h1 class="page-title">記事・特集</h1>
+            <div class="page-search-bar">
+                <input type="text" class="page-search-input" placeholder="記事を検索...">
+                <button class="page-search-btn">検索</button>
+            </div>
+        </div>
 
         <div class="content-wrapper">
             <aside class="sidebar">

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>講師・人材検索 - エデュマッチ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .breadcrumb {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .breadcrumb-nav {
+            display: flex;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        .breadcrumb-nav a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .main-content {
+            padding: 40px 0;
+        }
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .title-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        .page-search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px;
+            flex: 1;
+        }
+        .page-search-input {
+            flex: 1;
+            padding: 10px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .page-search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .page-search-btn {
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .page-search-btn:hover {
+            background: #1d4ed8;
+        }
+        .page-description {
+            font-size: 16px;
+            color: #666;
+        }
+        .filters-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .filter-label {
+            font-weight: bold;
+            color: #333;
+        }
+        .filter-select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .sort-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .sort-options {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .sort-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .sort-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        .results-count {
+            color: #666;
+            font-size: 14px;
+        }
+        .personnel-grid {
+            display: grid;
+            gap: 20px;
+        }
+        .personnel-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .personnel-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .personnel-header {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .personnel-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        .personnel-details {
+            flex: 1;
+        }
+        .personnel-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .personnel-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .personnel-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            padding: 4px 12px;
+            background: #e0e7ff;
+            color: #4338ca;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge.ai {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .badge.verified {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .personnel-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .stars {
+            color: #ffa500;
+            font-size: 16px;
+        }
+        .rating-number {
+            font-weight: bold;
+            color: #333;
+        }
+        .personnel-content {
+            margin-bottom: 20px;
+        }
+        .personnel-bio {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .personnel-expertise {
+            margin-bottom: 15px;
+        }
+        .expertise-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            padding: 4px 10px;
+            background: #f3f4f6;
+            color: #666;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .personnel-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .contact-info {
+            display: flex;
+            gap: 10px;
+            color: #666;
+            font-size: 13px;
+        }
+        .contact-btn {
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .contact-btn:hover {
+            background: #1d4ed8;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        .page-btn {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .page-btn:hover,
+        .page-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px 0;
+            margin-top: 80px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: white;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+        @media (max-width: 768px) {
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">エデュマッチ</div>
+                <div class="user-info">
+                    ゲストユーザー
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="#">ホーム</a>
+                <span>></span>
+                <span>講師・人材検索</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <div class="title-section">
+                    <h1 class="page-title">講師・人材検索</h1>
+                    <div class="page-search-bar">
+                        <input type="text" class="page-search-input" placeholder="講師名・スキルを検索...">
+                        <button class="page-search-btn">検索</button>
+                    </div>
+                </div>
+                <p class="page-description">教育分野の専門講師やAIコンサルタントを検索し、あなたのプロジェクトに最適な人材を見つけられます</p>
+            </div>
+
+            <div class="filters-section">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">人材タイプ</label>
+                        <select class="filter-select">
+                            <option>すべて</option>
+                            <option>講師</option>
+                            <option>AIコンサルタント</option>
+                            <option>カリキュラム開発者</option>
+                            <option>教育コーディネーター</option>
+                            <option>研修講師</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">専門分野</label>
+                        <select class="filter-select">
+                            <option>すべて</option>
+                            <option>ICT教育</option>
+                            <option>プログラミング教育</option>
+                            <option>AI活用</option>
+                            <option>データ分析</option>
+                            <option>オンライン学習</option>
+                            <option>STEAM教育</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">評価</label>
+                        <select class="filter-select">
+                            <option>すべて</option>
+                            <option>★★★★★ 5つ星</option>
+                            <option>★★★★☆ 4つ星以上</option>
+                            <option>★★★☆☆ 3つ星以上</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">対応形式</label>
+                        <select class="filter-select">
+                            <option>すべて</option>
+                            <option>オンライン</option>
+                            <option>対面</option>
+                            <option>ハイブリッド</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sort-controls">
+                <div class="sort-options">
+                    <span>並び替え:</span>
+                    <button class="sort-btn active">評価順</button>
+                    <button class="sort-btn">新着順</button>
+                    <button class="sort-btn">実績順</button>
+                </div>
+                <div class="results-count">89名の人材が見つかりました</div>
+            </div>
+
+            <div class="personnel-grid">
+                <div class="personnel-card">
+                    <div class="personnel-header">
+                        <div class="personnel-avatar">田</div>
+                        <div class="personnel-details">
+                            <h2 class="personnel-name">田中 栄一</h2>
+                            <p class="personnel-title">AI教育コンサルタント / 元公立中学校教員</p>
+                            <div class="personnel-badges">
+                                <span class="badge ai">AI専門</span>
+                                <span class="badge verified">認証済み</span>
+                                <span class="badge">ICT教育</span>
+                            </div>
+                        </div>
+                        <div class="personnel-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-number">4.9</span>
+                        </div>
+                    </div>
+
+                    <div class="personnel-content">
+                        <p class="personnel-bio">
+                            公立中学校で20年の指導経験を持ち、GIGAスクール構想の導入支援を数多く手がけてきました。特にAIを活用した個別最適化学習の実装に強みがあり、全国の学校での研修実績が100校以上です。
+                        </p>
+                        <div class="personnel-expertise">
+                            <div class="expertise-title">専門スキル</div>
+                            <div class="expertise-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">機械学習</span>
+                                <span class="tag">データ分析</span>
+                                <span class="tag">LMS構築</span>
+                                <span class="tag">個別最適化</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="personnel-footer">
+                        <div class="contact-info">
+                            <span>対応形式: オンライン/対面</span>
+                            <span>実績: 120件以上</span>
+                        </div>
+                        <button class="contact-btn">詳細を見る</button>
+                    </div>
+                </div>
+
+                <div class="personnel-card">
+                    <div class="personnel-header">
+                        <div class="personnel-avatar">佐</div>
+                        <div class="personnel-details">
+                            <h2 class="personnel-name">佐藤 真理子</h2>
+                            <p class="personnel-title">EdTech カリキュラム開発者 / 博士（教育学）</p>
+                            <div class="personnel-badges">
+                                <span class="badge verified">認証済み</span>
+                                <span class="badge">STEAM教育</span>
+                                <span class="badge">探究学習</span>
+                            </div>
+                        </div>
+                        <div class="personnel-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-number">4.8</span>
+                        </div>
+                    </div>
+
+                    <div class="personnel-content">
+                        <p class="personnel-bio">
+                            大学で教育学を専攻し、STEAM教育とプロジェクト型学習のカリキュラム開発において豊富な実績があります。民間教育機関での新規事業立ち上げ経験もあり、理論と実践のバランスに優れています。
+                        </p>
+                        <div class="personnel-expertise">
+                            <div class="expertise-title">専門スキル</div>
+                            <div class="expertise-tags">
+                                <span class="tag">カリキュラムデザイン</span>
+                                <span class="tag">STEAM教育</span>
+                                <span class="tag">探究型学習</span>
+                                <span class="tag">評価設計</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="personnel-footer">
+                        <div class="contact-info">
+                            <span>対応形式: オンライン</span>
+                            <span>実績: 85件</span>
+                        </div>
+                        <button class="contact-btn">詳細を見る</button>
+                    </div>
+                </div>
+
+                <div class="personnel-card">
+                    <div class="personnel-header">
+                        <div class="personnel-avatar">山</div>
+                        <div class="personnel-details">
+                            <h2 class="personnel-name">山本 健太</h2>
+                            <p class="personnel-title">プログラミング教育専門講師</p>
+                            <div class="personnel-badges">
+                                <span class="badge verified">認証済み</span>
+                                <span class="badge">プログラミング</span>
+                                <span class="badge">小学校</span>
+                            </div>
+                        </div>
+                        <div class="personnel-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-number">4.6</span>
+                        </div>
+                    </div>
+
+                    <div class="personnel-content">
+                        <p class="personnel-bio">
+                            小学校でのプログラミング教育普及に貢献しており、ScratchやViscuitを使った実践的な授業設計が得意です。現職の小学校教員としての経験を活かし、現場のニーズに即した研修プログラムを提供しています。
+                        </p>
+                        <div class="personnel-expertise">
+                            <div class="expertise-title">専門スキル</div>
+                            <div class="expertise-tags">
+                                <span class="tag">Scratch</span>
+                                <span class="tag">Viscuit</span>
+                                <span class="tag">小学校教育</span>
+                                <span class="tag">ワークショップ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="personnel-footer">
+                        <div class="contact-info">
+                            <span>対応形式: 対面/オンライン</span>
+                            <span>実績: 65件</span>
+                        </div>
+                        <button class="contact-btn">詳細を見る</button>
+                    </div>
+                </div>
+
+                <div class="personnel-card">
+                    <div class="personnel-header">
+                        <div class="personnel-avatar">鈴</div>
+                        <div class="personnel-details">
+                            <h2 class="personnel-name">鈴木 直人</h2>
+                            <p class="personnel-title">データ分析コンサルタント / 教育領域専門</p>
+                            <div class="personnel-badges">
+                                <span class="badge ai">AI専門</span>
+                                <span class="badge verified">認証済み</span>
+                                <span class="badge">データ分析</span>
+                            </div>
+                        </div>
+                        <div class="personnel-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-number">4.7</span>
+                        </div>
+                    </div>
+
+                    <div class="personnel-content">
+                        <p class="personnel-bio">
+                            教育データの可視化と分析を専門とし、学習効果測定や生徒の行動分析を通じた教育改善に取り組んでいます。Google Analytics、Tableau、Pythonを活用したダッシュボード構築の実績が豊富です。
+                        </p>
+                        <div class="personnel-expertise">
+                            <div class="expertise-title">専門スキル</div>
+                            <div class="expertise-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Tableau</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">統計分析</span>
+                                <span class="tag">データ可視化</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="personnel-footer">
+                        <div class="contact-info">
+                            <span>対応形式: オンライン</span>
+                            <span>実績: 95件</span>
+                        </div>
+                        <button class="contact-btn">詳細を見る</button>
+                    </div>
+                </div>
+
+                <div class="personnel-card">
+                    <div class="personnel-header">
+                        <div class="personnel-avatar">木</div>
+                        <div class="personnel-details">
+                            <h2 class="personnel-name">木村 由美</h2>
+                            <p class="personnel-title">オンライン学習コーディネーター</p>
+                            <div class="personnel-badges">
+                                <span class="badge verified">認証済み</span>
+                                <span class="badge">オンライン学習</span>
+                                <span class="badge">LMS</span>
+                            </div>
+                        </div>
+                        <div class="personnel-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-number">4.5</span>
+                        </div>
+                    </div>
+
+                    <div class="personnel-content">
+                        <p class="personnel-bio">
+                            MoodleやGoogle Classroom、Microsoft Teams for Educationなど、主要なLMSの導入・運用支援を数多く手がけています。オンライン学習の効果的な進め方や、モチベーション管理のノウハウを持っています。
+                        </p>
+                        <div class="personnel-expertise">
+                            <div class="expertise-title">専門スキル</div>
+                            <div class="expertise-tags">
+                                <span class="tag">Moodle</span>
+                                <span class="tag">Google Classroom</span>
+                                <span class="tag">Teams</span>
+                                <span class="tag">学習設計</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="personnel-footer">
+                        <div class="contact-info">
+                            <span>対応形式: オンライン</span>
+                            <span>実績: 78件</span>
+                        </div>
+                        <button class="contact-btn">詳細を見る</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="page-btn">‹ 前へ</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">次へ ›</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="#">サービス一覧</a></li>
+                        <li><a href="#">人材登録</a></li>
+                        <li><a href="#">資料請求</a></li>
+                        <li><a href="#">比較表作成</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>コンテンツ</h3>
+                    <ul>
+                        <li><a href="#">記事一覧</a></li>
+                        <li><a href="#">セミナー・イベント</a></li>
+                        <li><a href="#">キャンペーン情報</a></li>
+                        <li><a href="#">おすすめ書籍</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>サポート</h3>
+                    <ul>
+                        <li><a href="#">お問い合わせ</a></li>
+                        <li><a href="#">よくある質問</a></li>
+                        <li><a href="#">利用ガイド</a></li>
+                        <li><a href="#">サービス掲載について</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>会社情報</h3>
+                    <ul>
+                        <li><a href="#">運営会社</a></li>
+                        <li><a href="#">利用規約</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                        <li><a href="#">サイトマップ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 エデュマッチ. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
