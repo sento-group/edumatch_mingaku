@@ -36,6 +36,49 @@
             font-weight: bold;
             color: #2563eb;
         }
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
         .breadcrumb {
             padding: 15px 0;
             font-size: 14px;
@@ -284,8 +327,17 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">エデュマッチ</div>
-                <div class="user-info">
-                    ゲストユーザー
+                <nav>
+                    <ul class="nav">
+                        <li><a href="01_トップページ.html">ホーム</a></li>
+                        <li><a href="02_記事一覧.html">記事</a></li>
+                        <li><a href="03_サービス一覧.html">サービス</a></li>
+                        <li><a href="10_セミナー・イベント.html">イベント</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <a href="08_マイダッシュボード.html" class="btn btn-outline">ダッシュボード</a>
+                    <span>山田太郎さん</span>
                 </div>
             </div>
         </div>
