@@ -21,7 +21,12 @@
             padding: 15px 0;
             margin-bottom: 30px;
         }
-        .header-top {
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -30,35 +35,113 @@
             font-size: 24px;
             font-weight: bold;
             color: #2563eb;
-            text-decoration: none;
         }
-        .preview-badge {
-            font-size: 12px;
-            color: #666;
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
         .breadcrumb {
-            padding: 10px 0;
+            padding: 15px 0;
+            font-size: 14px;
+            color: #666;
         }
         .breadcrumb a {
             color: #2563eb;
             text-decoration: none;
         }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
         .page-header {
             margin-bottom: 30px;
         }
+        .title-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
         .page-title {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 32px;
+            color: #333;
+            margin: 0;
+        }
+        .page-search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px;
+            flex: 1;
+        }
+        .page-search-input {
+            flex: 1;
+            padding: 10px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .page-search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .page-search-btn {
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .page-search-btn:hover {
+            background: #1d4ed8;
         }
         .page-description {
             font-size: 16px;
             color: #666;
+            margin-bottom: 30px;
         }
         .stats-section {
             margin-bottom: 40px;
@@ -198,6 +281,15 @@
             font-weight: 600;
             margin-bottom: 5px;
         }
+        .company-name-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .company-name-link:hover {
+            color: #2563eb;
+        }
         .company-meta {
             font-size: 12px;
             color: #666;
@@ -228,16 +320,6 @@
         .contact-link:hover {
             text-decoration: underline;
         }
-        .footer {
-            margin-top: 80px;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #e5e7eb;
-        }
-        .footer a {
-            color: #2563eb;
-            text-decoration: none;
-        }
         @media (max-width: 768px) {
             .main-layout {
                 grid-template-columns: 1fr;
@@ -254,19 +336,38 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="header-top">
-                <a href="index.html" class="logo">エデュマッチ</a>
-                <span class="preview-badge">事業者管理チーム用プレビュー</span>
-            </div>
-            <div class="breadcrumb">
-                <a href="index.html">← 画面一覧に戻る</a>
+            <div class="header-content">
+                <div class="logo">エデュマッチ</div>
+                <nav>
+                    <ul class="nav">
+                        <li><a href="01_トップページ.html">ホーム</a></li>
+                        <li><a href="02_記事一覧.html">記事</a></li>
+                        <li><a href="03_サービス一覧.html">サービス</a></li>
+                        <li><a href="10_セミナー・イベント.html">イベント</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <a href="08_マイダッシュボード.html" class="btn btn-outline">ダッシュボード</a>
+                    <span>山田太郎さん</span>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <div class="page-header">
+        <div class="breadcrumb">
+            <a href="#">ホーム</a> &gt; サービス事業者一覧
+        </div>
+
+        <div class="title-section">
             <h1 class="page-title">サービス事業者一覧</h1>
+            <div class="page-search-bar">
+                <input type="text" class="page-search-input" placeholder="サービス事業者を検索...">
+                <button class="page-search-btn">検索</button>
+            </div>
+        </div>
+
+        <div class="page-header">
             <p class="page-description">掲載中の教育サービス事業者をカテゴリ・対象領域で検索できます。</p>
         </div>
 
@@ -369,7 +470,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <div class="company-name">EduTech Solutions 株式会社</div>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">EduTech Solutions 株式会社</a></div>
                                 <div class="company-meta">設立:2012年 / 従業員180名</div>
                             </td>
                             <td>
@@ -385,7 +486,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="company-name">スクールリンクス株式会社</div>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">スクールリンクス株式会社</a></div>
                                 <div class="company-meta">設立:2016年 / 従業員75名</div>
                             </td>
                             <td>
@@ -401,7 +502,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="company-name">コドモコミュニケーションズ</div>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">コドモコミュニケーションズ</a></div>
                                 <div class="company-meta">設立:2008年 / 従業員60名</div>
                             </td>
                             <td>
@@ -417,7 +518,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="company-name">Learning Analytics Japan</div>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">Learning Analytics Japan</a></div>
                                 <div class="company-meta">設立:2018年 / 従業員45名</div>
                             </td>
                             <td>
@@ -436,12 +537,7 @@
             </main>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <a href="index.html">TO-BE画面一覧に戻る</a>
-        </div>
-    </footer>
 </body>
 </html>
+
 
