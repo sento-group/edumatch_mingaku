@@ -191,29 +191,39 @@
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 15px;
-        }
-        .category-tags {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
         }
-        .category-tag {
-            padding: 8px 16px;
-            background: #2563eb;
-            color: white;
-            border-radius: 20px;
-            font-size: 14px;
-            border: none;
+        .filter-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #000;
+        }
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
             cursor: pointer;
             transition: all 0.3s;
+            border-bottom: 1px solid #f3f4f6;
         }
-        .category-tag.inactive {
-            background: #e5e7eb;
+        .category-item:hover {
+            color: #2563eb;
+        }
+        .category-item:last-child {
+            border-bottom: none;
+        }
+        .category-count {
             color: #666;
-        }
-        .category-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 14px;
         }
         .checkbox-group {
             display: flex;
@@ -395,13 +405,48 @@
         <div class="main-layout">
             <aside class="sidebar">
                 <div class="filter-section">
-                    <h2 class="filter-title">カテゴリ</h2>
-                    <div class="category-tags">
-                        <button class="category-tag">学習支援</button>
-                        <button class="category-tag">校務支援</button>
-                        <button class="category-tag">保護者連携</button>
-                        <button class="category-tag">人材育成</button>
-                        <button class="category-tag">設備・ハード</button>
+                    <h2 class="filter-title">サービスカテゴリー</h2>
+                    <div class="category-list">
+                        <div class="category-item">
+                            <span>AI活用</span>
+                            <span class="category-count">(8)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>保護者連絡</span>
+                            <span class="category-count">(9)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>生徒管理</span>
+                            <span class="category-count">(11)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>生徒集客</span>
+                            <span class="category-count">(16)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>英会話</span>
+                            <span class="category-count">(12)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>映像授業</span>
+                            <span class="category-count">(24)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>問題演習</span>
+                            <span class="category-count">(30)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>学習管理システム (LMS)</span>
+                            <span class="category-count">(9)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>質問対応</span>
+                            <span class="category-count">(4)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>プログラミング</span>
+                            <span class="category-count">(10)</span>
+                        </div>
                     </div>
                 </div>
                 <div class="filter-section">
