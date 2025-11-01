@@ -202,10 +202,27 @@
             justify-content: center;
             font-weight: bold;
             color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .service-logo:hover {
+            background: #2563eb;
+            color: white;
+            transform: scale(1.05);
         }
         .service-details h3 {
             font-size: 18px;
             margin-bottom: 5px;
+        }
+        .service-name-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .service-name-link:hover {
+            color: #2563eb;
         }
         .service-category {
             font-size: 12px;
@@ -533,9 +550,9 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="service-info">
-                            <div class="service-logo">UD</div>
+                            <a href="07_サービス詳細.html" class="service-logo">UD</a>
                             <div class="service-details">
-                                <h3>Udemy Business</h3>
+                                <h3><a href="07_サービス詳細.html" class="service-name-link">Udemy Business</a></h3>
                                 <span class="service-category">eラーニング</span>
                             </div>
                         </div>
@@ -594,9 +611,9 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="service-info">
-                            <div class="service-logo">CR</div>
+                            <a href="07_サービス詳細.html" class="service-logo">CR</a>
                             <div class="service-details">
-                                <h3>Coursera for Business</h3>
+                                <h3><a href="07_サービス詳細.html" class="service-name-link">Coursera for Business</a></h3>
                                 <span class="service-category">オンライン学習</span>
                             </div>
                         </div>
@@ -656,9 +673,9 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="service-info">
-                            <div class="service-logo">SK</div>
+                            <a href="07_サービス詳細.html" class="service-logo">SK</a>
                             <div class="service-details">
-                                <h3>Skillshare</h3>
+                                <h3><a href="07_サービス詳細.html" class="service-name-link">Skillshare</a></h3>
                                 <span class="service-category">クリエイティブ学習</span>
                             </div>
                         </div>
