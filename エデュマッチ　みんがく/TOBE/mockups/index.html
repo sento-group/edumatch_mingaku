@@ -37,6 +37,31 @@
             color: #666;
             line-height: 1.8;
         }
+        .stats-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 42px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
         .category-section {
             background: white;
             border-radius: 16px;
@@ -100,30 +125,17 @@
             color: #666;
             line-height: 1.6;
         }
-        .stats-section {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-value {
-            font-size: 42px;
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: bold;
-            color: #2563eb;
-            margin-bottom: 8px;
+            margin-left: 8px;
         }
-        .stat-label {
-            font-size: 16px;
-            color: #666;
+        .badge-new {
+            background: #10b981;
+            color: white;
         }
         .footer {
             background: white;
@@ -159,12 +171,16 @@
         <div class="stats-section">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-value">23</div>
+                    <div class="stat-value">52</div>
                     <div class="stat-label">総画面数</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">5</div>
+                    <div class="stat-value">7</div>
                     <div class="stat-label">カテゴリー</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">新規追加画面</div>
                 </div>
             </div>
         </div>
@@ -186,6 +202,14 @@
                         <div class="mockup-number">02</div>
                         <div class="mockup-title">記事一覧</div>
                         <div class="mockup-description">カテゴリ・タグで絞り込み検索可能な記事一覧ページ。検索バーあり</div>
+                    </div>
+                </a>
+                <a href="03_記事詳細（ゲート前）.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔒</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">03</div>
+                        <div class="mockup-title">記事詳細（ゲート前）</div>
+                        <div class="mockup-description">会員登録が必要な記事のゲート前表示ページ</div>
                     </div>
                 </a>
                 <a href="15_記事詳細（全文）.html" class="mockup-card">
@@ -228,6 +252,14 @@
                         <div class="mockup-description">AI分析によるパーソナライズされたおすすめコンテンツ</div>
                     </div>
                 </a>
+                <a href="28_導入事例一覧.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📚</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">28</div>
+                        <div class="mockup-title">導入事例一覧<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">教育現場での成功事例を掲載。フィルター機能付き</div>
+                    </div>
+                </a>
                 <a href="10_セミナー・イベント.html" class="mockup-card">
                     <div class="mockup-thumbnail">📅</div>
                     <div class="mockup-content">
@@ -242,6 +274,14 @@
                         <div class="mockup-number">23</div>
                         <div class="mockup-title">キャンペーン情報</div>
                         <div class="mockup-description">限定キャンペーンやお得な情報を紹介するページ</div>
+                    </div>
+                </a>
+                <a href="26_サービス事業者一覧.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🏢</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">26</div>
+                        <div class="mockup-title">サービス事業者一覧</div>
+                        <div class="mockup-description">教育サービス事業者をカテゴリ・提供形態・サポートで検索できる一覧ページ</div>
                     </div>
                 </a>
             </div>
@@ -266,6 +306,46 @@
                         <div class="mockup-description">タブ切り替え式の登録・ログインフォーム。SNS認証対応</div>
                     </div>
                 </a>
+                <a href="37_会員登録完了.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✅</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">37</div>
+                        <div class="mockup-title">会員登録完了<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">会員登録完了画面。メール確認案内と次のステップを表示</div>
+                    </div>
+                </a>
+                <a href="38_パスワードリセット_メール送信.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔑</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">38</div>
+                        <div class="mockup-title">パスワードリセット（メール送信）<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">パスワードリセット依頼フォーム</div>
+                    </div>
+                </a>
+                <a href="39_パスワードリセット_メール送信完了.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📧</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">39</div>
+                        <div class="mockup-title">パスワードリセット（送信完了）<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">リセットメール送信完了画面</div>
+                    </div>
+                </a>
+                <a href="40_パスワードリセット_新規設定.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔐</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">40</div>
+                        <div class="mockup-title">パスワードリセット（新規設定）<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">新しいパスワード設定フォーム</div>
+                    </div>
+                </a>
+                <a href="41_パスワード変更完了.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✔️</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">41</div>
+                        <div class="mockup-title">パスワード変更完了<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">パスワード変更完了画面</div>
+                    </div>
+                </a>
                 <a href="08_マイダッシュボード.html" class="mockup-card">
                     <div class="mockup-thumbnail">📊</div>
                     <div class="mockup-content">
@@ -282,6 +362,14 @@
                         <div class="mockup-description">興味のあるサービスを保存して一覧で管理するページ</div>
                     </div>
                 </a>
+                <a href="52_通知一覧.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔔</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">52</div>
+                        <div class="mockup-title">通知一覧<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">通知一覧。フィルター機能、既読管理機能付き</div>
+                    </div>
+                </a>
                 <a href="09_資料請求・問い合わせ.html" class="mockup-card">
                     <div class="mockup-thumbnail">📧</div>
                     <div class="mockup-content">
@@ -290,12 +378,28 @@
                         <div class="mockup-description">サービス企業への資料請求・問い合わせフォーム</div>
                     </div>
                 </a>
+                <a href="42_資料請求送信完了.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✅</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">42</div>
+                        <div class="mockup-title">資料請求送信完了<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">資料請求送信完了画面。送信内容の確認表示</div>
+                    </div>
+                </a>
                 <a href="11_お問い合わせ（運営宛）.html" class="mockup-card">
                     <div class="mockup-thumbnail">💬</div>
                     <div class="mockup-content">
                         <div class="mockup-number">11</div>
                         <div class="mockup-title">お問い合わせ（運営宛）</div>
                         <div class="mockup-description">エデュマッチ運営へのお問い合わせフォーム。チャット・メール対応</div>
+                    </div>
+                </a>
+                <a href="43_問い合わせ送信完了.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✅</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">43</div>
+                        <div class="mockup-title">問い合わせ送信完了<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">問い合わせ送信完了画面。問い合わせ番号表示</div>
                     </div>
                 </a>
                 <a href="06_プラン選択.html" class="mockup-card">
@@ -312,6 +416,60 @@
                         <div class="mockup-number">13</div>
                         <div class="mockup-title">決済</div>
                         <div class="mockup-description">決済情報入力・確認フロー。クレジットカード・請求書払い対応</div>
+                    </div>
+                </a>
+                <a href="44_決済完了.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✅</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">44</div>
+                        <div class="mockup-title">決済完了<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">決済完了画面。領収書ダウンロード機能付き</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <h2 class="category-title">📝 レビュー・評価機能</h2>
+            <div class="mockups-grid">
+                <a href="48_レビュー投稿モーダル.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✍️</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">48</div>
+                        <div class="mockup-title">レビュー投稿モーダル<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">レビュー投稿フォーム。星評価、文字数カウント機能付き</div>
+                    </div>
+                </a>
+                <a href="45_レビュー投稿完了.html" class="mockup-card">
+                    <div class="mockup-thumbnail">✅</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">45</div>
+                        <div class="mockup-title">レビュー投稿完了<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">レビュー投稿完了画面。投稿内容のプレビュー表示</div>
+                    </div>
+                </a>
+                <a href="49_無料相談予約モーダル.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📅</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">49</div>
+                        <div class="mockup-title">無料相談予約モーダル<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">無料相談予約フォーム。日時選択（第3希望まで）</div>
+                    </div>
+                </a>
+                <a href="50_サービス比較表.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📊</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">50</div>
+                        <div class="mockup-title">サービス比較表<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">複数サービスの詳細比較。横スクロール、PDF/Excel出力対応</div>
+                    </div>
+                </a>
+                <a href="51_削除確認モーダル.html" class="mockup-card">
+                    <div class="mockup-thumbnail">⚠️</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">51</div>
+                        <div class="mockup-title">削除確認モーダル<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">削除確認モーダル。確認チェックボックス付き</div>
                     </div>
                 </a>
             </div>
@@ -364,28 +522,85 @@
         </div>
 
         <div class="category-section">
-            <h2 class="category-title">🔗 その他</h2>
+            <h2 class="category-title">📄 企業・サポート情報</h2>
             <div class="mockups-grid">
-                <a href="03_記事詳細（ゲート前）.html" class="mockup-card">
-                    <div class="mockup-thumbnail">🔒</div>
-                    <div class="mockup-content">
-                        <div class="mockup-number">03alt</div>
-                        <div class="mockup-title">記事詳細（ゲート前）</div>
-                        <div class="mockup-description">会員登録が必要な記事のゲート前表示ページ</div>
-                    </div>
-                </a>
-                <a href="26_サービス事業者一覧.html" class="mockup-card">
+                <a href="27_会社概要.html" class="mockup-card">
                     <div class="mockup-thumbnail">🏢</div>
                     <div class="mockup-content">
-                        <div class="mockup-number">26</div>
-                        <div class="mockup-title">サービス事業者一覧</div>
-                        <div class="mockup-description">教育サービス事業者をカテゴリ・提供形態・サポートで検索できる一覧ページ</div>
+                        <div class="mockup-number">27</div>
+                        <div class="mockup-title">会社概要<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">運営会社情報、ミッション、価値観、アクセス情報</div>
+                    </div>
+                </a>
+                <a href="29_利用規約.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📜</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">29</div>
+                        <div class="mockup-title">利用規約<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">サービス利用規約の全文</div>
+                    </div>
+                </a>
+                <a href="29_プライバシーポリシー.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔒</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">29</div>
+                        <div class="mockup-title">プライバシーポリシー<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">個人情報保護方針</div>
+                    </div>
+                </a>
+                <a href="30_FAQ.html" class="mockup-card">
+                    <div class="mockup-thumbnail">❓</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">30</div>
+                        <div class="mockup-title">よくある質問<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">カテゴリ別FAQ。検索機能付き</div>
+                    </div>
+                </a>
+                <a href="31_ヘルプセンター.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🆘</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">31</div>
+                        <div class="mockup-title">ヘルプセンター<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">ヘルプ情報のハブページ。機能ガイド付き</div>
+                    </div>
+                </a>
+                <a href="32_サービス掲載について.html" class="mockup-card">
+                    <div class="mockup-thumbnail">📢</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">32</div>
+                        <div class="mockup-title">サービス掲載について<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">事業者向けサービス掲載案内。プラン比較付き</div>
                     </div>
                 </a>
             </div>
         </div>
 
+        <div class="category-section">
+            <h2 class="category-title">⚠️ エラー画面</h2>
+            <div class="mockups-grid">
+                <a href="46_404エラー.html" class="mockup-card">
+                    <div class="mockup-thumbnail">🔍</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">46</div>
+                        <div class="mockup-title">404 Page Not Found<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">ページが見つからない場合のエラー画面。検索機能付き</div>
+                    </div>
+                </a>
+                <a href="47_500エラー.html" class="mockup-card">
+                    <div class="mockup-thumbnail">⚠️</div>
+                    <div class="mockup-content">
+                        <div class="mockup-number">47</div>
+                        <div class="mockup-title">500 Server Error<span class="badge badge-new">NEW</span></div>
+                        <div class="mockup-description">サーバーエラー画面。再読み込み機能付き</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 エデュマッチ モックアップ集. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 12px;">最終更新: 2024年1月15日</p>
+        </div>
     </div>
 </body>
 </html>
-

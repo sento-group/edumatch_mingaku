@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ送信完了 - エデュマッチ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 40px;
+        }
+        h1 { font-size: 32px; color: #333; margin-bottom: 20px; font-weight: bold; }
+        .message { font-size: 16px; color: #666; line-height: 1.8; margin-bottom: 30px; }
+        .inquiry-number {
+            background: #eff6ff;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .inquiry-number p { font-size: 14px; color: #666; margin-bottom: 10px; }
+        .inquiry-number .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .info-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .info-box h3 { font-size: 16px; color: #333; margin-bottom: 15px; }
+        .info-box p { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 10px; }
+        .btn {
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+        }
+        .btn-outline { border: 2px solid #2563eb; color: #2563eb; background: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="01_トップページ.html" class="logo-link">エデュマッチ</a>
+        <div class="success-icon">✓</div>
+        <h1>お問い合わせを送信しました</h1>
+        <p class="message">
+            お問い合わせいただきありがとうございます。<br>
+            内容を確認の上、担当者よりご連絡いたします。
+        </p>
+        <div class="inquiry-number">
+            <p>お問い合わせ番号</p>
+            <div class="number">#INQ-20240115-0042</div>
+        </div>
+        <div class="info-box">
+            <h3>📧 回答までの目安</h3>
+            <p>
+                通常、2〜3営業日以内にご登録のメールアドレス宛にご返信いたします。<br>
+                お急ぎの場合は、お問い合わせ番号を記載の上、お電話にてご連絡ください。
+            </p>
+            <p style="margin-top: 15px;">
+                <strong>電話:</strong> 03-1234-5678 (平日 10:00-18:00)
+            </p>
+        </div>
+        <a href="01_トップページ.html" class="btn btn-primary">トップページへ</a>
+        <a href="30_FAQ.html" class="btn btn-outline">FAQを見る</a>
+    </div>
+</body>
+</html>

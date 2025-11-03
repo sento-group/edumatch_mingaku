@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知 - エデュマッチ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 15px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .page-header {
+            background: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .page-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-title { font-size: 32px; font-weight: bold; }
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline { border: 1px solid #e5e7eb; color: #666; background: white; }
+        .btn-outline:hover { background: #f3f4f6; }
+        .notification-filters {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-tab {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+        }
+        .filter-tab.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        .notification-list {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .notification-item {
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .notification-item:hover { background: #f8f9fa; }
+        .notification-item:last-child { border-bottom: none; }
+        .notification-item.unread {
+            background: #eff6ff;
+        }
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .icon-info { background: #dbeafe; }
+        .icon-success { background: #dcfce7; }
+        .icon-warning { background: #fef3c7; }
+        .icon-message { background: #fce7f3; }
+        .notification-content { flex: 1; }
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+        .notification-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .notification-time {
+            font-size: 12px;
+            color: #999;
+            white-space: nowrap;
+        }
+        .notification-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .unread-badge {
+            width: 8px;
+            height: 8px;
+            background: #2563eb;
+            border-radius: 50%;
+            margin-top: 8px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-state-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        .empty-state h3 {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .empty-state p {
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="01_トップページ.html" class="logo">エデュマッチ</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="page-title">通知</h1>
+                <div class="header-actions">
+                    <button class="btn btn-outline">すべて既読にする</button>
+                    <button class="btn btn-outline">設定</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="notification-filters">
+            <div class="filter-tabs">
+                <button class="filter-tab active">すべて (8)</button>
+                <button class="filter-tab">未読 (3)</button>
+                <button class="filter-tab">お知らせ</button>
+                <button class="filter-tab">メッセージ</button>
+                <button class="filter-tab">レビュー</button>
+                <button class="filter-tab">サービス更新</button>
+            </div>
+        </div>
+
+        <div class="notification-list">
+            <div class="notification-item unread">
+                <div class="notification-icon icon-success">✓</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">資料請求の回答が届きました</div>
+                            <div class="notification-text">
+                                「スマート学習管理 Pro」の資料請求に対して回答がありました。資料をダウンロードしてご確認ください。
+                            </div>
+                        </div>
+                        <div class="notification-time">2分前</div>
+                    </div>
+                </div>
+                <div class="unread-badge"></div>
+            </div>
+
+            <div class="notification-item unread">
+                <div class="notification-icon icon-message">💬</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">新しいメッセージがあります</div>
+                            <div class="notification-text">
+                                リモート株式会社から「リモートクラス Plus」についてメッセージが届いています。
+                            </div>
+                        </div>
+                        <div class="notification-time">1時間前</div>
+                    </div>
+                </div>
+                <div class="unread-badge"></div>
+            </div>
+
+            <div class="notification-item unread">
+                <div class="notification-icon icon-info">📢</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">新しいセミナーが公開されました</div>
+                            <div class="notification-text">
+                                「GIGAスクール構想の最新動向」セミナーが2月15日に開催されます。今すぐ申し込みを受付中です。
+                            </div>
+                        </div>
+                        <div class="notification-time">3時間前</div>
+                    </div>
+                </div>
+                <div class="unread-badge"></div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon icon-success">⭐</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">レビューが承認されました</div>
+                            <div class="notification-text">
+                                「スマート学習管理 Pro」に投稿したレビューが承認され、公開されました。
+                            </div>
+                        </div>
+                        <div class="notification-time">1日前</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon icon-info">📝</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">新着記事のお知らせ</div>
+                            <div class="notification-text">
+                                「教育ICTツール選定のポイント2024」が公開されました。
+                            </div>
+                        </div>
+                        <div class="notification-time">2日前</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon icon-warning">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">プラン更新のお知らせ</div>
+                            <div class="notification-text">
+                                プレミアムプランの次回更新日は2024年2月15日です。
+                            </div>
+                        </div>
+                        <div class="notification-time">3日前</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon icon-success">✓</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">問い合わせの回答</div>
+                            <div class="notification-text">
+                                エデュマッチサポートチームから問い合わせへの回答がありました。
+                            </div>
+                        </div>
+                        <div class="notification-time">5日前</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon icon-info">📊</div>
+                <div class="notification-content">
+                    <div class="notification-header">
+                        <div>
+                            <div class="notification-title">おすすめサービスの更新</div>
+                            <div class="notification-text">
+                                あなたにおすすめの新しいサービスが追加されました。レコメンドページをチェックしてみてください。
+                            </div>
+                        </div>
+                        <div class="notification-time">1週間前</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 通知がない場合の表示例 -->
+        <!--
+        <div class="notification-list">
+            <div class="empty-state">
+                <div class="empty-state-icon">🔔</div>
+                <h3>通知はありません</h3>
+                <p>新しい通知が届くとここに表示されます</p>
+            </div>
+        </div>
+        -->
+    </main>
+
+    <script>
+        // フィルタータブの切り替え
+        const tabs = document.querySelectorAll('.filter-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // 通知アイテムのクリック
+        const items = document.querySelectorAll('.notification-item');
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.remove('unread');
+                const badge = item.querySelector('.unread-badge');
+                if (badge) badge.remove();
+            });
+        });
+    </script>
+</body>
+</html>
