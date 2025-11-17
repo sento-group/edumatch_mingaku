@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>削除確認 - エデュマッチ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans JP', sans-serif; background: #f8f9fa; padding: 20px; }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-header {
+            padding: 30px 30px 20px;
+            text-align: center;
+        }
+        .warning-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+        }
+        .modal-header h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .modal-body {
+            padding: 0 30px 30px;
+        }
+        .warning-message {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .warning-message p {
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .delete-target {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .delete-target h4 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .delete-target .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        .confirmation-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fef2f2;
+            border-radius: 8px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .checkbox-group label {
+            font-size: 14px;
+            color: #991b1b;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .modal-footer {
+            padding: 20px 30px 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            min-width: 120px;
+        }
+        .btn-cancel {
+            background: #f3f4f6;
+            color: #666;
+        }
+        .btn-cancel:hover { background: #e5e7eb; }
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+        }
+        .btn-danger:hover { opacity: 0.9; }
+        .btn-danger:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- 例1: キープリストからサービスを削除 -->
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="warning-icon">⚠️</div>
+                <h2>本当に削除しますか?</h2>
+            </div>
+
+            <div class="modal-body">
+                <div class="warning-message">
+                    <p>
+                        <strong>この操作は取り消せません。</strong><br>
+                        削除すると、このサービスはキープリストから完全に削除されます。
+                    </p>
+                </div>
+
+                <div class="delete-target">
+                    <h4>削除対象:</h4>
+                    <div class="item-name">スマート学習管理 Pro</div>
+                </div>
+
+                <p class="confirmation-text">
+                    本当にこのサービスをキープリストから削除してもよろしいですか?
+                </p>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="confirm-delete">
+                    <label for="confirm-delete">削除することを理解しました</label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-cancel" onclick="window.location='19_キープリスト.html'">キャンセル</button>
+                <button class="btn btn-danger" id="delete-btn" disabled>削除する</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const checkbox = document.getElementById('confirm-delete');
+        const deleteBtn = document.getElementById('delete-btn');
+
+        checkbox.addEventListener('change', () => {
+            deleteBtn.disabled = !checkbox.checked;
+        });
+
+        deleteBtn.addEventListener('click', () => {
+            // 削除処理後、リストページに戻る
+            alert('削除しました');
+            window.location = '19_キープリスト.html';
+        });
+    </script>
+
+    <!-- 他の削除確認パターン例 -->
+    <!--
+    例2: アカウント削除
+    <div class="delete-target">
+        <h4>削除対象:</h4>
+        <div class="item-name">あなたのアカウント</div>
+    </div>
+    <div class="warning-message">
+        <p>
+            <strong>アカウントを削除すると:</strong><br>
+            • すべての投稿レビューが削除されます<br>
+            • キープリストが削除されます<br>
+            • 閲覧履歴が削除されます<br>
+            • この操作は取り消せません
+        </p>
+    </div>
+
+    例3: レビュー削除
+    <div class="delete-target">
+        <h4>削除対象レビュー:</h4>
+        <div class="item-name">「生徒の学力向上に大きく貢献」</div>
+        <div style="font-size: 13px; color: #666; margin-top: 5px;">
+            投稿日: 2024年1月10日 | サービス: スマート学習管理 Pro
+        </div>
+    </div>
+    -->
+</body>
+</html>

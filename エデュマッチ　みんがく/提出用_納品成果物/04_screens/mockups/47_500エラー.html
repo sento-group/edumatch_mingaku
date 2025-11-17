@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 サーバーエラー - エデュマッチ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 50px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .logo-link { display: inline-block; margin-bottom: 30px; font-size: 24px; font-weight: bold; color: #2563eb; text-decoration: none; }
+        .error-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 50px;
+        }
+        .error-code { font-size: 48px; font-weight: bold; color: #dc2626; margin-bottom: 10px; }
+        h1 { font-size: 32px; color: #333; margin-bottom: 15px; font-weight: bold; }
+        .message { font-size: 16px; color: #666; line-height: 1.8; margin-bottom: 30px; }
+        .info-box {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .info-box p { font-size: 14px; color: #991b1b; line-height: 1.8; margin: 0; }
+        .btn {
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn-primary { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; }
+        .btn-outline { border: 2px solid #2563eb; color: #2563eb; background: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="01_トップページ.html" class="logo-link">エデュマッチ</a>
+        <div class="error-icon">⚠️</div>
+        <div class="error-code">500</div>
+        <h1>サーバーエラーが発生しました</h1>
+        <p class="message">
+            申し訳ございません。現在サーバーに問題が発生しています。<br>
+            しばらく時間をおいてから再度お試しください。
+        </p>
+        <div class="info-box">
+            <p>
+                <strong>問題が続く場合:</strong><br>
+                • ページを再読み込みしてみてください<br>
+                • しばらく時間をおいてからアクセスしてください<br>
+                • それでも解決しない場合は、サポートまでお問い合わせください
+            </p>
+        </div>
+        <button onclick="location.reload()" class="btn btn-primary">ページを再読み込み</button>
+        <a href="01_トップページ.html" class="btn btn-outline">トップページへ</a>
+        <div style="margin-top: 30px;">
+            <a href="11_お問い合わせ（運営宛）.html" style="color: #2563eb; text-decoration: none; font-size: 14px;">サポートに問い合わせる</a>
+        </div>
+    </div>
+</body>
+</html>

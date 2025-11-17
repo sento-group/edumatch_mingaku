@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エデュマッチ - 教育サービスの比較・レビューサイト</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 15px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        .user-area {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-outline {
+            border: 1px solid #2563eb;
+            color: #2563eb;
+            background: white;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+        .hero-content {
+            text-align: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .search-box input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 16px;
+        }
+        .search-box button {
+            padding: 15px 30px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .section {
+            margin-bottom: 60px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 28px;
+            color: #333;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+        .card-image {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .card-text {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .stars {
+            color: #fbbf24;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .footer-section h4 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">エデュマッチ</div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="03_サービス一覧.html">サービス一覧</a></li>
+                        <li><a href="02_記事一覧.html">記事・特集</a></li>
+                        <li><a href="18_レビュー一覧.html">レビュー</a></li>
+                        <li><a href="10_セミナー・イベント.html">セミナー・イベント</a></li>
+                        <li><a href="28_導入事例一覧.html">導入事例</a></li>
+                    </ul>
+                </nav>
+                <div class="user-area">
+                    <a href="08_マイダッシュボード.html" class="btn btn-outline">ログイン</a>
+                    <button class="btn btn-primary">無料会員登録</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>教育現場に最適なサービスを見つけよう</h1>
+                <p>全国の教育関係者が選ぶ、信頼できる教育サービスの比較・レビューサイト</p>
+                <div class="search-box">
+                    <input type="text" placeholder="サービス名、カテゴリ、課題などを入力">
+                    <button>検索</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">レビューランキング TOP5</h2>
+                <a href="#" class="btn btn-outline">すべて見る</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-image">学習管理システム</div>
+                    <div class="card-body">
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span>4.8</span>
+                        </div>
+                        <h3 class="card-title">スマート学習管理 Pro</h3>
+                        <p class="card-text">AIを活用した個別最適化学習を実現。生徒一人ひとりの理解度に応じた学習プランを自動生成します。</p>
+                        <span class="badge">小中学校向け</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">オンライン授業</div>
+                    <div class="card-body">
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span>4.7</span>
+                        </div>
+                        <h3 class="card-title">リモートクラス Plus</h3>
+                        <p class="card-text">双方向型オンライン授業プラットフォーム。録画機能や課題管理機能も充実しています。</p>
+                        <span class="badge">全校種対応</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">校務支援</div>
+                    <div class="card-body">
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.6</span>
+                        </div>
+                        <h3 class="card-title">校務効率化システム</h3>
+                        <p class="card-text">成績管理から保護者連絡まで、校務を一元管理。働き方改革を実現します。</p>
+                        <span class="badge">小中高対応</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">デジタル教材</div>
+                    <div class="card-body">
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.5</span>
+                        </div>
+                        <h3 class="card-title">インタラクティブ教材</h3>
+                        <p class="card-text">動画やアニメーションを活用した分かりやすい教材。生徒の興味関心を引き出します。</p>
+                        <span class="badge">高校向け</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">新着サービス</h2>
+                <a href="#" class="btn btn-outline">すべて見る</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-image">プログラミング教育</div>
+                    <div class="card-body">
+                        <h3 class="card-title">コードキッズ</h3>
+                        <p class="card-text">小学生向けビジュアルプログラミング教材。楽しみながら論理的思考力を育成します。</p>
+                        <span class="badge">NEW</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">英語学習</div>
+                    <div class="card-body">
+                        <h3 class="card-title">グローバルイングリッシュ</h3>
+                        <p class="card-text">ネイティブ講師によるオンライン英会話レッスン。学校単位での導入が可能です。</p>
+                        <span class="badge">NEW</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">ICT支援</div>
+                    <div class="card-body">
+                        <h3 class="card-title">テックサポート</h3>
+                        <p class="card-text">ICT機器の導入から運用まで総合的にサポート。専門スタッフが常駐支援も可能です。</p>
+                        <span class="badge">NEW</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">注目の記事・特集</h2>
+                <a href="#" class="btn btn-outline">すべて見る</a>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-image">特集記事</div>
+                    <div class="card-body">
+                        <h3 class="card-title">GIGAスクール構想の現在地</h3>
+                        <p class="card-text">1人1台端末の活用事例と課題を徹底取材。成功校の取り組みを紹介します。</p>
+                        <span class="badge">特集</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">導入事例</div>
+                    <div class="card-body">
+                        <h3 class="card-title">○○中学校のICT活用術</h3>
+                        <p class="card-text">生徒の学力向上を実現した独自の取り組みとは？担当教員インタビュー。</p>
+                        <span class="badge">事例</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">比較記事</div>
+                    <div class="card-body">
+                        <h3 class="card-title">学習管理システム徹底比較</h3>
+                        <p class="card-text">主要5サービスを機能・価格・サポート体制で比較。選定のポイントも解説。</p>
+                        <span class="badge">比較</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="03_サービス一覧.html">サービス一覧</a></li>
+                        <li><a href="03_サービス一覧.html">カテゴリ別</a></li>
+                        <li><a href="18_レビュー一覧.html">レビューランキング</a></li>
+                        <li><a href="03_サービス一覧.html">新着サービス</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>コンテンツ</h4>
+                    <ul>
+                        <li><a href="02_記事一覧.html">記事・特集</a></li>
+                        <li><a href="28_導入事例一覧.html">導入事例</a></li>
+                        <li><a href="02_記事一覧.html">比較記事</a></li>
+                        <li><a href="10_セミナー・イベント.html">セミナー・イベント</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>サポート</h4>
+                    <ul>
+                        <li><a href="31_ヘルプセンター.html">ヘルプセンター</a></li>
+                        <li><a href="30_FAQ.html">よくある質問</a></li>
+                        <li><a href="11_お問い合わせ（運営宛）.html">お問い合わせ</a></li>
+                        <li><a href="09_資料請求・問い合わせ.html">資料請求</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>企業情報</h4>
+                    <ul>
+                        <li><a href="27_会社概要.html">運営会社</a></li>
+                        <li><a href="32_サービス掲載について.html">サービス掲載について</a></li>
+                        <li><a href="29_利用規約.html">利用規約</a></li>
+                        <li><a href="29_プライバシーポリシー.html">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 エデュマッチ. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

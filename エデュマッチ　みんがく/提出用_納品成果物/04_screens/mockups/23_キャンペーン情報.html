@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャンペーン情報 - エデュマッチ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 15px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .hero-description {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        .main-content {
+            padding: 60px 0;
+        }
+        .campaign-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .campaign-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        .campaign-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .campaign-featured {
+            border: 3px solid #ffd700;
+        }
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffd700;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .campaign-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+        .campaign-content {
+            padding: 30px;
+        }
+        .campaign-header {
+            margin-bottom: 20px;
+        }
+        .campaign-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-ending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-upcoming {
+            background: #cce5ff;
+            color: #004085;
+        }
+        .campaign-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .campaign-period {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .campaign-description {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .campaign-benefits {
+            margin-bottom: 25px;
+        }
+        .benefits-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .benefits-list {
+            list-style: none;
+        }
+        .benefits-list li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .campaign-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .action-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .action-btn.primary {
+            background: #28a745;
+            color: white;
+        }
+        .action-btn.primary:hover {
+            background: #1e7e34;
+            transform: translateY(-2px);
+        }
+        .action-btn.secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        .action-btn.secondary:hover {
+            background: #e9ecef;
+        }
+        .countdown {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .filters-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .filters-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .filter-label {
+            font-weight: bold;
+            color: #333;
+        }
+        .filter-select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px 0;
+            margin-top: 80px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: white;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .hero-title {
+                font-size: 32px;
+            }
+            .campaign-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">エデュマッチ</div>
+                <nav>
+                    <ul class="nav">
+                        <li><a href="01_トップページ.html">ホーム</a></li>
+                        <li><a href="02_記事一覧.html">記事</a></li>
+                        <li><a href="03_サービス一覧.html">サービス</a></li>
+                        <li><a href="10_セミナー・イベント.html">イベント</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <a href="05_新規登録・ログイン.html" class="btn btn-outline">ログイン</a>
+                    <a href="05_新規登録・ログイン.html" class="btn btn-primary">新規登録</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">🎉 特別キャンペーン</h1>
+            <p class="hero-subtitle">お得なキャンペーンで、あなたの学習を始めよう</p>
+            <p class="hero-description">期間限定の特別割引や無料体験など、学習をスタートするチャンスです</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="filters-section">
+                <h2 class="filters-title">キャンペーンを絞り込む</h2>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">ステータス</label>
+                        <select class="filter-select">
+                            <option>すべて</option>
+                            <option>実施中</option>
+                            <option>まもなく終了</option>
+                            <option>近日開始</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">カテゴリ</label>
+                        <select class="filter-select">
+                            <option>すべて</option>
+                            <option>eラーニング</option>
+                            <option>LMS</option>
+                            <option>語学学習</option>
+                            <option>プログラミング</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">割引率</label>
+                        <select class="filter-select">
+                            <option>すべて</option>
+                            <option>50%以上</option>
+                            <option>30%以上</option>
+                            <option>10%以上</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-grid">
+                <div class="campaign-card campaign-featured">
+                    <div class="featured-badge">🏆 特別企画</div>
+                    <div class="campaign-image">🎓</div>
+                    <div class="campaign-content">
+                        <div class="campaign-header">
+                            <span class="campaign-status status-active">実施中</span>
+                            <h3 class="campaign-title">新規登録で全サービス50%OFF</h3>
+                            <p class="campaign-period">期間：2024年9月1日〜2024年10月31日</p>
+                        </div>
+                        <p class="campaign-description">
+                            新規会員登録をしていただいた方限定で、掲載中のすべてのサービスが50%OFFでご利用いただけます。
+                            この機会に気になっていたサービスをお試しください。
+                        </p>
+                        <div class="campaign-benefits">
+                            <h4 class="benefits-title">特典内容</h4>
+                            <ul class="benefits-list">
+                                <li>全サービス50%OFF（初回契約のみ）</li>
+                                <li>専用サポート窓口の利用</li>
+                                <li>導入コンサルティング無料</li>
+                                <li>30日間の返金保証</li>
+                            </ul>
+                        </div>
+                        <div class="campaign-actions">
+                            <a href="05_新規登録・ログイン.html" class="action-btn primary">今すぐ登録</a>
+                            <a href="#" class="action-btn secondary">詳細を見る</a>
+                            <span class="countdown">残り42日</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="campaign-card">
+                    <div class="campaign-image">💰</div>
+                    <div class="campaign-content">
+                        <div class="campaign-header">
+                            <span class="campaign-status status-ending">まもなく終了</span>
+                            <h3 class="campaign-title">Udemy Business 3ヶ月無料体験</h3>
+                            <p class="campaign-period">期間：2024年8月15日〜2024年9月30日</p>
+                        </div>
+                        <p class="campaign-description">
+                            世界最大級のオンライン学習プラットフォーム Udemy Business を
+                            3ヶ月間無料でお試しいただけます。
+                        </p>
+                        <div class="campaign-benefits">
+                            <h4 class="benefits-title">特典内容</h4>
+                            <ul class="benefits-list">
+                                <li>3ヶ月間の無料利用</li>
+                                <li>210,000以上のコースへアクセス</li>
+                                <li>進捗管理機能の利用</li>
+                                <li>修了証の発行</li>
+                            </ul>
+                        </div>
+                        <div class="campaign-actions">
+                            <a href="09_資料請求・問い合わせ.html" class="action-btn primary">申し込む</a>
+                            <a href="07_サービス詳細.html" class="action-btn secondary">詳細を見る</a>
+                            <span class="countdown">残り11日</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="campaign-card">
+                    <div class="campaign-image">🚀</div>
+                    <div class="campaign-content">
+                        <div class="campaign-header">
+                            <span class="campaign-status status-active">実施中</span>
+                            <h3 class="campaign-title">Coursera for Business 年額20%OFF</h3>
+                            <p class="campaign-period">期間：2024年9月1日〜2024年12月31日</p>
+                        </div>
+                        <p class="campaign-description">
+                            大学レベルの高品質なコンテンツで企業研修を充実させませんか？
+                            年額契約で通常価格より20%OFFでご提供します。
+                        </p>
+                        <div class="campaign-benefits">
+                            <h4 class="benefits-title">特典内容</h4>
+                            <ul class="benefits-list">
+                                <li>年額契約20%OFF</li>
+                                <li>大学認定の修了証取得</li>
+                                <li>専門分野の深い学習</li>
+                                <li>企業向け管理ダッシュボード</li>
+                            </ul>
+                        </div>
+                        <div class="campaign-actions">
+                            <a href="09_資料請求・問い合わせ.html" class="action-btn primary">資料請求</a>
+                            <a href="07_サービス詳細.html" class="action-btn secondary">詳細を見る</a>
+                            <span class="countdown">残り103日</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="campaign-card">
+                    <div class="campaign-image">🎯</div>
+                    <div class="campaign-content">
+                        <div class="campaign-header">
+                            <span class="campaign-status status-upcoming">近日開始</span>
+                            <h3 class="campaign-title">年末特別セール</h3>
+                            <p class="campaign-period">期間：2024年12月1日〜2024年12月31日</p>
+                        </div>
+                        <p class="campaign-description">
+                            年末の特別セールを予定しています。詳細は後日発表いたしますので、
+                            ぜひお楽しみにお待ちください。
+                        </p>
+                        <div class="campaign-benefits">
+                            <h4 class="benefits-title">予定特典</h4>
+                            <ul class="benefits-list">
+                                <li>全サービス最大70%OFF</li>
+                                <li>限定特典の提供</li>
+                                <li>抽選プレゼント企画</li>
+                                <li>新春キャンペーンへの優先案内</li>
+                            </ul>
+                        </div>
+                        <div class="campaign-actions">
+                            <a href="#" class="action-btn secondary">事前登録</a>
+                            <a href="#" class="action-btn secondary">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>サービス</h3>
+                    <ul>
+                        <li><a href="03_サービス一覧.html">サービス一覧</a></li>
+                        <li><a href="18_レビュー一覧.html">レビュー投稿</a></li>
+                        <li><a href="09_資料請求・問い合わせ.html">資料請求</a></li>
+                        <li><a href="#">比較表作成</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>コンテンツ</h3>
+                    <ul>
+                        <li><a href="02_記事一覧.html">記事一覧</a></li>
+                        <li><a href="10_セミナー・イベント.html">セミナー・イベント</a></li>
+                        <li><a href="23_キャンペーン情報.html">キャンペーン情報</a></li>
+                        <li><a href="#">おすすめ書籍</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>サポート</h3>
+                    <ul>
+                        <li><a href="11_お問い合わせ（運営宛）.html">お問い合わせ</a></li>
+                        <li><a href="#">よくある質問</a></li>
+                        <li><a href="#">利用ガイド</a></li>
+                        <li><a href="#">サービス掲載について</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>会社情報</h3>
+                    <ul>
+                        <li><a href="#">運営会社</a></li>
+                        <li><a href="#">利用規約</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                        <li><a href="#">サイトマップ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 エデュマッチ. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

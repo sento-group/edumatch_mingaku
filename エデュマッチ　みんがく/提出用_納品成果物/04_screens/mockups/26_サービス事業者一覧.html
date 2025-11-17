@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービス事業者一覧 - エデュマッチ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .breadcrumb a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .title-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        .page-title {
+            font-size: 32px;
+            color: #333;
+            margin: 0;
+        }
+        .page-search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px;
+            flex: 1;
+        }
+        .page-search-input {
+            flex: 1;
+            padding: 10px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .page-search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .page-search-btn {
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .page-search-btn:hover {
+            background: #1d4ed8;
+        }
+        .page-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .stats-section {
+            margin-bottom: 40px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .stat-value {
+            font-size: 42px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        .main-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        .filter-section {
+            margin-bottom: 30px;
+        }
+        .filter-section:last-child {
+            margin-bottom: 0;
+        }
+        .filter-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .filter-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #000;
+        }
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .category-item:hover {
+            color: #2563eb;
+        }
+        .category-item:last-child {
+            border-bottom: none;
+        }
+        .category-count {
+            color: #666;
+            font-size: 14px;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .content-area {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        .results-count {
+            font-size: 16px;
+            color: #666;
+        }
+        .sort-select {
+            padding: 8px 30px 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+        .providers-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .providers-table th {
+            text-align: left;
+            padding: 15px 10px;
+            background: #f9fafb;
+            font-weight: 600;
+            color: #2563eb;
+            font-size: 14px;
+        }
+        .providers-table td {
+            padding: 25px 10px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .providers-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        .company-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .company-name-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .company-name-link:hover {
+            color: #2563eb;
+        }
+        .company-meta {
+            font-size: 12px;
+            color: #666;
+        }
+        .service-name {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .service-category-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #2563eb;
+            color: white;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        .company-strength {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .contact-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">エデュマッチ</div>
+                <nav>
+                    <ul class="nav">
+                        <li><a href="01_トップページ.html">ホーム</a></li>
+                        <li><a href="02_記事一覧.html">記事</a></li>
+                        <li><a href="03_サービス一覧.html">サービス</a></li>
+                        <li><a href="10_セミナー・イベント.html">イベント</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <a href="08_マイダッシュボード.html" class="btn btn-outline">ダッシュボード</a>
+                    <span>山田太郎さん</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">ホーム</a> &gt; サービス事業者一覧
+        </div>
+
+        <div class="title-section">
+            <h1 class="page-title">サービス事業者一覧</h1>
+            <div class="page-search-bar">
+                <input type="text" class="page-search-input" placeholder="サービス事業者を検索...">
+                <button class="page-search-btn">検索</button>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <p class="page-description">掲載中の教育サービス事業者をカテゴリ・対象領域で検索できます。</p>
+        </div>
+
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">掲載事業者数</div>
+                    <div class="stat-value">128社</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">自治体連携実績</div>
+                    <div class="stat-value">42件</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">導入サポート体制整備済み</div>
+                    <div class="stat-value">86社</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">最新更新</div>
+                    <div class="stat-value">2024/03/18</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h2 class="filter-title">サービスカテゴリー</h2>
+                    <div class="category-list">
+                        <div class="category-item">
+                            <span>AI活用</span>
+                            <span class="category-count">(8)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>保護者連絡</span>
+                            <span class="category-count">(9)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>生徒管理</span>
+                            <span class="category-count">(11)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>生徒集客</span>
+                            <span class="category-count">(16)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>英会話</span>
+                            <span class="category-count">(12)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>映像授業</span>
+                            <span class="category-count">(24)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>問題演習</span>
+                            <span class="category-count">(30)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>学習管理システム (LMS)</span>
+                            <span class="category-count">(9)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>質問対応</span>
+                            <span class="category-count">(4)</span>
+                        </div>
+                        <div class="category-item">
+                            <span>プログラミング</span>
+                            <span class="category-count">(10)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h2 class="filter-title">提供形態</h2>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>SaaS / クラウド</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>オンプレミス</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>コンサルティング</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>ハードウェア提供</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h2 class="filter-title">サポート</h2>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>導入研修あり</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>現場伴走支援</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>24時間サポート</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox">
+                            <span>全国対応</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="content-area">
+                <div class="content-header">
+                    <span class="results-count">128社の事業者を表示中</span>
+                    <select class="sort-select">
+                        <option>最新更新順</option>
+                        <option>掲載開始順</option>
+                        <option>事業者名順</option>
+                    </select>
+                </div>
+
+                <table class="providers-table">
+                    <thead>
+                        <tr>
+                            <th>事業者名</th>
+                            <th>主な提供サービス</th>
+                            <th>強み・特徴</th>
+                            <th>サポート窓口</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">EduTech Solutions 株式会社</a></div>
+                                <div class="company-meta">設立:2012年 / 従業員180名</div>
+                            </td>
+                            <td>
+                                <div class="service-name">学習eポータル「ClassPort」</div>
+                                <span class="service-category-tag">学習支援</span>
+                            </td>
+                            <td>
+                                <div class="company-strength">GIGAスクール対応の一人一台端末管理と教材配信が強み。自治体導入実績が豊富。</div>
+                            </td>
+                            <td>
+                                <a href="#" class="contact-link">営業担当に連絡する</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">スクールリンクス株式会社</a></div>
+                                <div class="company-meta">設立:2016年 / 従業員75名</div>
+                            </td>
+                            <td>
+                                <div class="service-name">校務支援クラウド「Admin Flow」</div>
+                                <span class="service-category-tag">校務支援</span>
+                            </td>
+                            <td>
+                                <div class="company-strength">校務DXの現場改善を支援。導入研修と定着支援の伴走が評判。</div>
+                            </td>
+                            <td>
+                                <a href="#" class="contact-link">資料を請求する</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">コドモコミュニケーションズ</a></div>
+                                <div class="company-meta">設立:2008年 / 従業員60名</div>
+                            </td>
+                            <td>
+                                <div class="service-name">保護者連絡アプリ「SuguRen」</div>
+                                <span class="service-category-tag">保護者連携</span>
+                            </td>
+                            <td>
+                                <div class="company-strength">保護者連絡の自動化と多言語対応が特長。全国1,500校で導入。</div>
+                            </td>
+                            <td>
+                                <a href="#" class="contact-link">導入相談を予約</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="company-name"><a href="07_サービス詳細.html" class="company-name-link">Learning Analytics Japan</a></div>
+                                <div class="company-meta">設立:2018年 / 従業員45名</div>
+                            </td>
+                            <td>
+                                <div class="service-name">学習データ分析 SaaS「InsightEDU」</div>
+                                <span class="service-category-tag">学習支援</span>
+                            </td>
+                            <td>
+                                <div class="company-strength">学習ログの可視化と生成AI分析を組み合わせた独自ダッシュボードを提供。</div>
+                            </td>
+                            <td>
+                                <a href="#" class="contact-link">イベントに参加</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
+
+
