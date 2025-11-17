@@ -70,8 +70,8 @@ flowchart TD
 
 - AS-IS業務フロー: [AS-IS_業務フロー.md](./AS-IS_業務フロー.md)
 - 業務フロー総覧: [業務フロー_総覧.md](./業務フロー_総覧.md)
-- 画面一覧（TO-BE）: [../04_画面設計/TO-BE_画面一覧.md](../04_画面設計/TO-BE_画面一覧.md)
-- HTMLモックアップ: [../04_画面設計/HTMLモックアップ/](../04_画面設計/HTMLモックアップ/)
+- 画面一覧（TO-BE）: [../04_screens/TO-BE_画面一覧.md](../04_screens/TO-BE_画面一覧.md)
+- HTMLモックアップ: [../04_screens/mockups/](../04_screens/mockups/)
 
 ---
 **作成日**: 2025年01月XX日  
