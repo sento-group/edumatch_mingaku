@@ -384,6 +384,411 @@
             border-radius: 15px;
             font-size: 12px;
         }
+        .original-articles-section {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .original-articles-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+        .original-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .original-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .original-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+        .original-description {
+            opacity: 0.95;
+            font-size: 16px;
+        }
+        .original-date-range {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .original-date-range-text {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,255,255,0.25);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .ai-icon {
+            font-size: 12px;
+        }
+        .original-grid {
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        .original-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        .original-card:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 768px) {
+            .original-card {
+                flex-direction: column;
+                padding: 30px;
+            }
+        }
+        .original-card-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+        .original-card-content {
+            flex: 1;
+        }
+        .original-card-info h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .original-card-meta {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        .original-card-description {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+        .original-card-action {
+            display: inline-block;
+            background: white;
+            color: #ff6b6b;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .original-card-action {
+            cursor: pointer;
+        }
+        .original-card-action:hover {
+            background: rgba(255,255,255,0.9);
+            transform: translateX(5px);
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 10;
+        }
+        .modal-header-content h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .modal-header-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            opacity: 0.95;
+        }
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+        .modal-body {
+            padding: 40px;
+            color: #333;
+        }
+        .modal-article-content {
+            line-height: 1.8;
+        }
+        .modal-article-content h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 30px 0 15px 0;
+            color: #2563eb;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        .modal-article-content h3:first-child {
+            margin-top: 0;
+        }
+        .modal-article-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .modal-article-content ul, .modal-article-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        .modal-article-content li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+        .modal-article-content strong {
+            color: #2563eb;
+            font-weight: bold;
+        }
+        .modal-article-content blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #ff6b6b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .curation-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 3px solid #e3f2fd;
+        }
+        .curation-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .curation-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .curation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .curation-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e3f2fd;
+            transition: all 0.3s;
+        }
+        .curation-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+        .curation-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .curation-card-icon {
+            font-size: 24px;
+        }
+        .curation-card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            flex: 1;
+        }
+        .curation-card-category {
+            font-size: 11px;
+            color: #2563eb;
+            background: #e3f2fd;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .curation-card-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .curation-card-link {
+            display: inline-block;
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .curation-card-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .curation-card-link::after {
+            content: ' →';
+            transition: transform 0.3s;
+        }
+        .curation-card-link:hover::after {
+            transform: translateX(3px);
+        }
+        .modal-footer {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 16px 16px;
+        }
+        .modal-footer-info {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-footer-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .modal-btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .modal-btn-primary:hover {
+            background: #0056b3;
+        }
+        .modal-btn-outline {
+            background: white;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+        .modal-btn-outline:hover {
+            background: #f8f9fa;
+        }
         .footer {
             background: #2c3e50;
             color: white;
@@ -433,6 +838,59 @@
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .original-articles-section {
+                padding: 30px 20px;
+            }
+            .original-title {
+                font-size: 22px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .original-card-info h3 {
+                font-size: 20px;
+            }
+            .original-card-description {
+                font-size: 14px;
+            }
+            .modal-content {
+                max-width: 100%;
+                margin: 10px;
+                max-height: 95vh;
+            }
+            .modal-header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .modal-header-content h2 {
+                font-size: 20px;
+            }
+            .modal-header-meta {
+                font-size: 11px;
+            }
+            .modal-body {
+                padding: 25px 20px;
+            }
+            .modal-footer {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .modal-footer-actions {
+                width: 100%;
+            }
+            .modal-btn {
+                flex: 1;
+            }
+            .curation-grid {
+                grid-template-columns: 1fr;
+            }
+            .curation-card {
+                padding: 15px;
+            }
+            .curation-title {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -474,6 +932,40 @@
             <div class="page-header">
                 <h1 class="page-title">あなたへのおすすめ</h1>
                 <p class="page-description">あなたの閲覧履歴と興味関心に基づいて、最適なサービスや記事をご提案します</p>
+            </div>
+
+            <div class="original-articles-section">
+                <div class="original-header">
+                    <h2 class="original-title">
+                        ✨ あなた向けのオリジナル記事はこちら！
+                        <span class="original-badge">オリジナル</span>
+                        <span class="ai-badge">
+                            <span class="ai-icon">🤖</span>
+                            AI生成
+                        </span>
+                    </h2>
+                    <div class="original-date-range">
+                        <p class="original-date-range-text">
+                            <strong>1週間に1つ</strong>、<strong>1月15日〜1月21日</strong>までのあなたの興味から、その週にあった出来事や配信のあった記事をまとめたキュレーションされたオリジナル記事です！
+                        </p>
+                    </div>
+                    <p class="original-description">あなたの学習傾向や興味関心に基づいて、AIが自動生成した特別な記事を毎週お届けします</p>
+                </div>
+                <div class="original-grid">
+                    <div class="original-card">
+                        <div class="original-card-icon">🎓</div>
+                        <div class="original-card-content">
+                            <div class="original-card-info">
+                                <h3>プログラミング初心者が3ヶ月で実務レベルになる学習ロードマップ</h3>
+                                <div class="original-card-meta">AI生成 | 2024年1月15日〜21日</div>
+                            </div>
+                            <div class="original-card-description">
+                                あなたのプログラミング学習への関心を踏まえ、効率的にスキルを身につけるための具体的な学習計画をご提案。実践的なプロジェクト例も紹介しています。この週に配信された最新情報と、あなたの学習傾向を分析して作成された特別な記事です。
+                            </div>
+                            <button class="original-card-action" onclick="openModal('modal1')">記事を読む →</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="insights-panel">
@@ -700,6 +1192,480 @@
         </div>
     </main>
 
+    <!-- モーダル1: プログラミング学習ロードマップ -->
+    <div id="modal1" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal1')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-header-content">
+                    <h2>プログラミング初心者が3ヶ月で実務レベルになる学習ロードマップ</h2>
+                    <div class="modal-header-meta">
+                        <span>🤖 AI生成記事</span>
+                        <span>📅 2024年1月15日〜21日</span>
+                        <span>🎯 あなたの興味: プログラミング、実践的学習</span>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="closeModal('modal1')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-article-content">
+                    <p>
+                        この1週間、あなたはプログラミング学習に関するサービスを15件以上閲覧し、実践的なスキル習得への関心が高いことが分かりました。そこで、この週に配信された最新情報と、あなたの学習傾向を踏まえて、<strong>3ヶ月で実務レベルに到達するための具体的なロードマップ</strong>をAIが生成しました。
+                    </p>
+
+                    <h3>📅 この週の注目トピック</h3>
+                    <p>
+                        1月15日〜21日の期間、プログラミング学習サービスでは以下の動きがありました：
+                    </p>
+                    <ul>
+                        <li><strong>Udemy Business</strong>が新機能「実践プロジェクト連携」をリリース</li>
+                        <li><strong>Codecademy</strong>が日本語対応コースを50本追加</li>
+                        <li>企業のプログラミング研修導入が前年比30%増加</li>
+                    </ul>
+
+                    <h3>🎯 あなたに最適な3ヶ月プラン</h3>
+                    <p>
+                        あなたの「実践的学習」への関心を考慮し、理論だけでなく実際に手を動かしながら学べる構成になっています。
+                    </p>
+
+                    <h3>第1ヶ月：基礎固め（週20時間）</h3>
+                    <ul>
+                        <li><strong>Week 1-2:</strong> HTML/CSS基礎とGit/GitHubの使い方</li>
+                        <li><strong>Week 3-4:</strong> JavaScript基礎とDOM操作</li>
+                    </ul>
+                    <blockquote>
+                        この週に配信された「初心者向けGit講座」があなたの学習スタイルに合っているため、早めにGitを習得することをおすすめします。
+                    </blockquote>
+
+                    <h3>第2ヶ月：実践プロジェクト（週25時間）</h3>
+                    <ul>
+                        <li><strong>Week 5-6:</strong> ToDoアプリ、天気アプリなどのミニプロジェクト</li>
+                        <li><strong>Week 7-8:</strong> フロントエンドフレームワーク（React/Vue）の基礎</li>
+                    </ul>
+
+                    <h3>第3ヶ月：実務レベルへ（週30時間）</h3>
+                    <ul>
+                        <li><strong>Week 9-10:</strong> バックエンド基礎（Node.js/Express）</li>
+                        <li><strong>Week 11-12:</strong> ポートフォリオ作成とデプロイ</li>
+                    </ul>
+
+                    <h3>💡 あなたへの特別なアドバイス</h3>
+                    <p>
+                        あなたは「日本語対応」と「買い切り型」のサービスを重視しているため、<strong>Udemy Business</strong>の新機能「実践プロジェクト連携」が特に効果的です。この週にリリースされたばかりの機能なので、最新の学習体験が得られます。
+                    </p>
+
+                    <p>
+                        また、この週に多くの企業がプログラミング研修を導入していることから、企業研修としての導入も検討することで、より実践的な環境で学習できる可能性があります。
+                    </p>
+
+                    <div class="curation-section">
+                        <h3 class="curation-title">
+                            📚 あなたの興味に合わせた関連記事のキュレーション
+                        </h3>
+                        <p class="curation-subtitle">
+                            あなたが興味を持っている「プログラミング」「実践的学習」「データサイエンス」「認定証」などのジャンルから、この週に配信された関連記事を厳選しました。
+                        </p>
+                        <div class="curation-grid">
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">💻</span>
+                                    <div class="curation-card-title">JavaScript初心者向け実践プロジェクト10選</div>
+                                    <span class="curation-card-category">プログラミング</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に配信された最新のJavaScriptプロジェクト集。あなたの「実践的学習」への関心にぴったりの内容です。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">📊</span>
+                                    <div class="curation-card-title">データサイエンス入門：Python基礎から学ぶ</div>
+                                    <span class="curation-card-category">データサイエンス</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    あなたのデータサイエンスへの興味を深める、初心者向けの実践的なガイド。この週に更新された最新情報を含みます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🎓</span>
+                                    <div class="curation-card-title">Git/GitHub完全ガイド：実務で使えるコマンド集</div>
+                                    <span class="curation-card-category">実践的学習</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に配信された「初心者向けGit講座」の続編。実務で使える実践的なコマンドを学べます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🏆</span>
+                                    <div class="curation-card-title">プログラミング認定証でキャリアアップする方法</div>
+                                    <span class="curation-card-category">認定証</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    あなたの認定証取得への意欲を後押しする、就職・転職に有利な資格の選び方と学習戦略。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🚀</span>
+                                    <div class="curation-card-title">React vs Vue：2024年最新比較と選び方</div>
+                                    <span class="curation-card-category">プログラミング</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に注目を集めたフロントエンドフレームワークの比較記事。あなたの学習プランに役立ちます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">💼</span>
+                                    <div class="curation-card-title">企業研修としてのプログラミング学習導入事例</div>
+                                    <span class="curation-card-category">実践的学習</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に増加した企業研修導入の事例を紹介。実務に直結した学習環境の作り方を学べます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-info">
+                    <span>🤖 この記事はAIが自動生成しました</span>
+                    <span>📊 あなたの閲覧履歴と興味関心に基づいています</span>
+                </div>
+                <div class="modal-footer-actions">
+                    <button class="modal-btn modal-btn-outline" onclick="closeModal('modal1')">閉じる</button>
+                    <button class="modal-btn modal-btn-primary" onclick="window.location.href='03_サービス一覧.html'">関連サービスを見る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル2: データサイエンス学習 -->
+    <div id="modal2" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal2')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-header-content">
+                    <h2>データサイエンス学習の最適なサービス選び方【2024年版】</h2>
+                    <div class="modal-header-meta">
+                        <span>🤖 AI生成記事</span>
+                        <span>📅 2024年1月15日〜21日</span>
+                        <span>🎯 あなたの興味: データサイエンス、専門分野</span>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="closeModal('modal2')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-article-content">
+                    <p>
+                        この1週間、あなたはデータサイエンス関連の記事を8件以上閲覧し、専門的な学習への意欲が高いことが分かりました。この週に配信された最新情報と、あなたの学習スタイルを分析して、<strong>最適なサービス選び方</strong>をAIがまとめました。
+                    </p>
+
+                    <h3>📅 この週のデータサイエンス界隈の動き</h3>
+                    <ul>
+                        <li><strong>Coursera</strong>が「データサイエンス専門講座」を日本語対応で拡充</li>
+                        <li>Python 3.12の新機能を活用したデータ分析手法が注目</li>
+                        <li>企業のデータドリブン経営への関心が高まり、データサイエンティストの需要が増加</li>
+                    </ul>
+
+                    <h3>🎓 レベル別おすすめサービス</h3>
+
+                    <h3>初心者向け</h3>
+                    <p>
+                        あなたの「日本語対応」への重視を考慮すると、<strong>Udemy</strong>の日本語コースが最適です。この週に新しく追加された「Python基礎から学ぶデータ分析」コースが、あなたの学習スタイルに合っています。
+                    </p>
+
+                    <h3>中級者向け</h3>
+                    <p>
+                        <strong>Coursera for Business</strong>の「データサイエンス専門講座」が、この週に日本語対応を拡充しました。あなたの「認定証取得」への意欲を活かせる内容です。
+                    </p>
+
+                    <h3>上級者向け</h3>
+                    <p>
+                        実務レベルのプロジェクトを扱う<strong>Kaggle Learn</strong>が、この週に新しいコンペティションを開始。あなたの「実践的学習」への関心に応えられます。
+                    </p>
+
+                    <h3>💡 あなたへの特別な推奨</h3>
+                    <p>
+                        あなたは「専門分野」への関心が高いため、この週に注目を集めた<strong>Python 3.12の新機能</strong>を活用した学習を始めることをおすすめします。最新技術を学ぶことで、キャリアの差別化にもつながります。
+                    </p>
+
+                    <blockquote>
+                        この週に多くの企業がデータドリブン経営を推進していることから、企業研修としてデータサイエンスを学ぶことで、実務に直結したスキルが身につきます。
+                    </blockquote>
+
+                    <div class="curation-section">
+                        <h3 class="curation-title">
+                            📚 あなたの興味に合わせた関連記事のキュレーション
+                        </h3>
+                        <p class="curation-subtitle">
+                            あなたが興味を持っている「データサイエンス」「専門分野」「Python」「認定証」などのジャンルから、この週に配信された関連記事を厳選しました。
+                        </p>
+                        <div class="curation-grid">
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🐍</span>
+                                    <div class="curation-card-title">Python 3.12新機能を活用したデータ分析入門</div>
+                                    <span class="curation-card-category">データサイエンス</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に注目を集めたPython 3.12の新機能をデータ分析に活用する方法。あなたの専門分野への関心に応えます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">📈</span>
+                                    <div class="curation-card-title">Courseraデータサイエンス専門講座の選び方</div>
+                                    <span class="curation-card-category">専門分野</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に日本語対応を拡充したCourseraの講座から、あなたのレベルに合った最適なコースを選ぶ方法。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🏆</span>
+                                    <div class="curation-card-title">データサイエンティスト認定証の取得メリット</div>
+                                    <span class="curation-card-category">認定証</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    あなたの認定証取得への意欲を後押しする、データサイエンス分野の資格の価値と取得方法。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">💼</span>
+                                    <div class="curation-card-title">データドリブン経営を支えるスキルセット</div>
+                                    <span class="curation-card-category">専門分野</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に推進が加速したデータドリブン経営に必要な実務スキルを解説。企業研修としても活用できます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">📊</span>
+                                    <div class="curation-card-title">Kaggleコンペティションで学ぶ実践的データ分析</div>
+                                    <span class="curation-card-category">実践的学習</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に開始された新しいKaggleコンペティションを通じて、実践的なデータ分析スキルを身につける方法。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🎓</span>
+                                    <div class="curation-card-title">初心者から上級者まで：データサイエンス学習ロードマップ</div>
+                                    <span class="curation-card-category">データサイエンス</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    あなたの学習スタイルに合わせた、レベル別のデータサイエンス学習プラン。この週の最新情報を含みます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-info">
+                    <span>🤖 この記事はAIが自動生成しました</span>
+                    <span>📊 あなたの閲覧履歴と興味関心に基づいています</span>
+                </div>
+                <div class="modal-footer-actions">
+                    <button class="modal-btn modal-btn-outline" onclick="closeModal('modal2')">閉じる</button>
+                    <button class="modal-btn modal-btn-primary" onclick="window.location.href='03_サービス一覧.html'">関連サービスを見る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル3: 認定証でキャリアアップ -->
+    <div id="modal3" class="modal-overlay" onclick="closeModalOnOverlay(event, 'modal3')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-header-content">
+                    <h2>認定証でキャリアアップ！効果的な学習戦略とは</h2>
+                    <div class="modal-header-meta">
+                        <span>🤖 AI生成記事</span>
+                        <span>📅 2024年1月15日〜21日</span>
+                        <span>🎯 あなたの興味: 認定証、キャリアアップ</span>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="closeModal('modal3')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-article-content">
+                    <p>
+                        この1週間、あなたは認定証取得に関する情報を積極的に閲覧し、キャリアアップへの強い意欲を示しています。この週に配信された最新情報と、あなたの学習傾向を分析して、<strong>効果的な認定証取得戦略</strong>をAIが提案します。
+                    </p>
+
+                    <h3>📅 この週の認定証・資格関連の動き</h3>
+                    <ul>
+                        <li><strong>Google</strong>が「Google Career Certificates」の日本語版を拡充</li>
+                        <li><strong>Microsoft</strong>が「Azure認定資格」の試験内容を2024年版に更新</li>
+                        <li>企業の採用活動で、オンライン認定証の評価が高まっている</li>
+                    </ul>
+
+                    <h3>🎯 あなたに最適な認定証取得戦略</h3>
+                    <p>
+                        あなたの「キャリアアップ」と「認定証取得」への意欲を考慮し、就職・転職に直結する資格を選ぶことが重要です。
+                    </p>
+
+                    <h3>ステップ1: 目標設定（1週間）</h3>
+                    <p>
+                        この週に多くの企業が採用活動を活発化していることから、<strong>3ヶ月以内に取得できる認定証</strong>を目標に設定することをおすすめします。
+                    </p>
+
+                    <h3>ステップ2: 学習プラン作成（1週間）</h3>
+                    <ul>
+                        <li>週20時間の学習時間を確保</li>
+                        <li>理論学習と実践演習をバランスよく配置</li>
+                        <li>定期的な進捗チェックポイントを設定</li>
+                    </ul>
+
+                    <h3>ステップ3: 実践的学習（8-10週間）</h3>
+                    <p>
+                        あなたの「実践的な内容」への重視を活かし、<strong>Coursera</strong>や<strong>LinkedIn Learning</strong>の実践プロジェクトを含むコースを選択することをおすすめします。
+                    </p>
+
+                    <h3>ステップ4: 試験対策（2週間）</h3>
+                    <p>
+                        この週に更新された<strong>Microsoft Azure認定資格</strong>の試験内容を確認し、最新の試験形式に対応した対策を行いましょう。
+                    </p>
+
+                    <h3>💡 あなたへの特別なアドバイス</h3>
+                    <p>
+                        この週の動向から、<strong>Google Career Certificates</strong>の日本語版拡充が注目されています。あなたの「日本語対応」への重視を考慮すると、この認定証が特に効果的です。
+                    </p>
+
+                    <blockquote>
+                        企業の採用活動でオンライン認定証の評価が高まっていることから、取得後はLinkedInプロフィールに認定証を表示することで、キャリアアップの機会が広がります。
+                    </blockquote>
+
+                    <h3>📊 認定証取得後のキャリアパス</h3>
+                    <p>
+                        この週に配信された情報によると、認定証取得者の転職成功率が前年比25%向上しています。あなたのキャリア目標に合わせて、取得する認定証を選ぶことで、より効果的なキャリアアップが可能です。
+                    </p>
+
+                    <div class="curation-section">
+                        <h3 class="curation-title">
+                            📚 あなたの興味に合わせた関連記事のキュレーション
+                        </h3>
+                        <p class="curation-subtitle">
+                            あなたが興味を持っている「認定証」「キャリアアップ」「ビジネススキル」「実践的な内容」などのジャンルから、この週に配信された関連記事を厳選しました。
+                        </p>
+                        <div class="curation-grid">
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🏆</span>
+                                    <div class="curation-card-title">Google Career Certificates完全ガイド【2024年版】</div>
+                                    <span class="curation-card-category">認定証</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に日本語版を拡充したGoogle Career Certificatesの詳細解説。あなたの「日本語対応」への重視に応えます。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">☁️</span>
+                                    <div class="curation-card-title">Microsoft Azure認定資格2024年版試験対策</div>
+                                    <span class="curation-card-category">認定証</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に更新されたAzure認定資格の試験内容に対応した、最新の対策方法と学習プラン。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">💼</span>
+                                    <div class="curation-card-title">LinkedInプロフィールで認定証を効果的にアピールする方法</div>
+                                    <span class="curation-card-category">キャリアアップ</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に高まったオンライン認定証の評価を活かし、LinkedInでキャリアアップにつなげる方法。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">📈</span>
+                                    <div class="curation-card-title">認定証取得者の転職成功率が25%向上：データ分析</div>
+                                    <span class="curation-card-category">キャリアアップ</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に配信された最新データから見る、認定証取得が転職に与える影響と効果的な活用法。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🎓</span>
+                                    <div class="curation-card-title">CourseraとLinkedIn Learningの実践プロジェクト活用法</div>
+                                    <span class="curation-card-category">実践的な内容</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    あなたの「実践的な内容」への重視を活かす、認定証取得に役立つ実践プロジェクトの選び方。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+
+                            <div class="curation-card">
+                                <div class="curation-card-header">
+                                    <span class="curation-card-icon">🚀</span>
+                                    <div class="curation-card-title">3ヶ月で取得できる認定証：効率的な学習戦略</div>
+                                    <span class="curation-card-category">認定証</span>
+                                </div>
+                                <div class="curation-card-description">
+                                    この週に増加した企業の採用活動に間に合わせる、短期間で取得できる認定証と学習プラン。
+                                </div>
+                                <a href="15_記事詳細（全文）.html" class="curation-card-link">記事を読む</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-info">
+                    <span>🤖 この記事はAIが自動生成しました</span>
+                    <span>📊 あなたの閲覧履歴と興味関心に基づいています</span>
+                </div>
+                <div class="modal-footer-actions">
+                    <button class="modal-btn modal-btn-outline" onclick="closeModal('modal3')">閉じる</button>
+                    <button class="modal-btn modal-btn-primary" onclick="window.location.href='03_サービス一覧.html'">関連サービスを見る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -745,5 +1711,40 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeModalOnOverlay(event, modalId) {
+            if (event.target === event.currentTarget) {
+                closeModal(modalId);
+            }
+        }
+
+        // ESCキーでモーダルを閉じる
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModals = document.querySelectorAll('.modal-overlay.active');
+                activeModals.forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
