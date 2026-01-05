@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービス比較 - エデュマッチ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: 15px 0;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        .page-title { font-size: 32px; margin-bottom: 10px; }
+        .page-description { font-size: 16px; opacity: 0.95; }
+        .comparison-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+        .comparison-table thead {
+            background: #f8f9fa;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            font-weight: 600;
+            color: #333;
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            z-index: 10;
+        }
+        .comparison-table th:first-child {
+            width: 200px;
+            left: 0;
+            z-index: 11;
+        }
+        .comparison-table td:first-child {
+            font-weight: 600;
+            background: #f8f9fa;
+            position: sticky;
+            left: 0;
+        }
+        .service-header {
+            text-align: center;
+            padding: 30px 20px !important;
+        }
+        .service-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 5px;
+        }
+        .service-company {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .service-rating {
+            font-size: 20px;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        .service-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .check-icon { color: #10b981; font-size: 20px; }
+        .cross-icon { color: #dc2626; font-size: 20px; }
+        .category-row {
+            background: #eff6ff !important;
+            font-weight: 600;
+            color: #2563eb;
+        }
+        .action-buttons {
+            text-align: center;
+            padding: 15px !important;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+        }
+        .btn-outline { border: 2px solid #2563eb; color: #2563eb; background: white; }
+        .export-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .export-section h3 { font-size: 18px; color: #333; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="01_トップページ.html" class="logo">エデュマッチ</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">サービス比較表</h1>
+            <p class="page-description">選択したサービスを項目ごとに比較できます</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="comparison-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>比較項目</th>
+                        <th>
+                            <div class="service-header">
+                                <div class="service-name">スマート学習管理 Pro</div>
+                                <div class="service-company">株式会社スマート教育</div>
+                                <div class="service-rating">★★★★★ 4.8</div>
+                                <div class="service-price">¥50,000/月</div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="service-header">
+                                <div class="service-name">リモートクラス Plus</div>
+                                <div class="service-company">リモート株式会社</div>
+                                <div class="service-rating">★★★★★ 4.7</div>
+                                <div class="service-price">¥30,000/月</div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="service-header">
+                                <div class="service-name">校務効率化システム</div>
+                                <div class="service-company">エデュテック社</div>
+                                <div class="service-rating">★★★★☆ 4.6</div>
+                                <div class="service-price">¥80,000/月</div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="category-row">
+                        <td colspan="4">基本機能</td>
+                    </tr>
+                    <tr>
+                        <td>学習管理機能</td>
+                        <td class="check-icon">✓</td>
+                        <td class="cross-icon">✗</td>
+                        <td class="check-icon">✓</td>
+                    </tr>
+                    <tr>
+                        <td>オンライン授業</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                        <td class="cross-icon">✗</td>
+                    </tr>
+                    <tr>
+                        <td>課題管理</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                    </tr>
+                    <tr>
+                        <td>成績管理</td>
+                        <td class="check-icon">✓</td>
+                        <td class="cross-icon">✗</td>
+                        <td class="check-icon">✓</td>
+                    </tr>
+                    <tr class="category-row">
+                        <td colspan="4">対応校種</td>
+                    </tr>
+                    <tr>
+                        <td>小学校</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                    </tr>
+                    <tr>
+                        <td>中学校</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                    </tr>
+                    <tr>
+                        <td>高等学校</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                        <td class="check-icon">✓</td>
+                    </tr>
+                    <tr class="category-row">
+                        <td colspan="4">サポート</td>
+                    </tr>
+                    <tr>
+                        <td>導入支援</td>
+                        <td>◎ 訪問・オンライン</td>
+                        <td>○ オンラインのみ</td>
+                        <td>◎ 訪問・オンライン</td>
+                    </tr>
+                    <tr>
+                        <td>運用サポート</td>
+                        <td>24時間365日</td>
+                        <td>平日10-18時</td>
+                        <td>24時間365日</td>
+                    </tr>
+                    <tr>
+                        <td>研修プログラム</td>
+                        <td class="check-icon">✓ 無料</td>
+                        <td class="check-icon">✓ 有料</td>
+                        <td class="check-icon">✓ 無料</td>
+                    </tr>
+                    <tr class="category-row">
+                        <td colspan="4">アクション</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="action-buttons">
+                            <a href="09_資料請求・問い合わせ.html" class="btn btn-primary">資料請求</a>
+                            <a href="07_サービス詳細.html" class="btn btn-outline">詳細を見る</a>
+                        </td>
+                        <td class="action-buttons">
+                            <a href="09_資料請求・問い合わせ.html" class="btn btn-primary">資料請求</a>
+                            <a href="07_サービス詳細.html" class="btn btn-outline">詳細を見る</a>
+                        </td>
+                        <td class="action-buttons">
+                            <a href="09_資料請求・問い合わせ.html" class="btn btn-primary">資料請求</a>
+                            <a href="07_サービス詳細.html" class="btn btn-outline">詳細を見る</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="export-section">
+            <h3>比較表を保存・共有</h3>
+            <div>
+                <button class="btn btn-outline" onclick="window.print()">PDFで保存</button>
+                <button class="btn btn-outline">Excelでダウンロード</button>
+                <a href="19_キープリスト.html" class="btn btn-primary">キープリストに戻る</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
